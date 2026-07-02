@@ -26,13 +26,10 @@ function getAsciiLogo() {
   
   return [
     '',
-    cyan("       \\   /"),
-    cyan("        \\ /"),
-    cyan("        | |") + blue("     conversion-retention-pipeline"),
-    cyan("        | |") + blue("     ============================="),
-    cyan("       (   )") + blue("    Recombine & Optimize Google Ads Assets"),
-    cyan("        \\ /"),
-    cyan("         v"),
+    cyan("  ╔═══╗      ╔═══╗      ╔═══╗      ╔═══╗"),
+    cyan("  ║   ╠══════╣   ╠══════╣   ╠══════╣   ╠══════>  ") + blue("conversion-retention-pipeline"),
+    cyan("  ╚═══╝      ╚═══╝      ╚═══╝      ╚═══╝         ") + blue("============================="),
+    blue("                                                 Recombine & Optimize Google Ads Assets"),
     '',
     chalk.bold.cyan('=== conversion-retention-pipeline - Sweet Spot Asset Optimizer ==='),
     chalk.blue('Querying active RSAs & PMax Text Assets (API v24) and fusing SUPER ADS'),
