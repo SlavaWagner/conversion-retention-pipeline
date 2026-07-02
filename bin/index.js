@@ -33,7 +33,7 @@ function getAsciiLogo() {
     '',
     chalk.bold.cyan('=== conversion-retention-pipeline - Sweet Spot Asset Optimizer ==='),
     chalk.blue('Querying active RSAs & PMax Text Assets (API v24) and fusing SUPER ADS'),
-    chalk.gray('Created via Google Antigravity CLI | 100% License Compliant'),
+    chalk.gray('Created via Google Antigravity CLI'),
     ''
   ].join('\n');
 }
