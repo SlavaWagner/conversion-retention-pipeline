@@ -265,7 +265,7 @@ async function showInteractiveDashboard() {
   console.log(chalk.bold.cyan('--- Environment Status ---'));
   console.log(`Google Ads Customer ID:  ${chalk.green(config.customerId || 'Not configured')}`);
   console.log(`Connection Status:       ${config.refreshToken ? chalk.green('Authorized ✔') : chalk.yellow('Unconfigured (Will use sandbox mode) ⚠')}`);
-  console.log(`Active Agents:           ${chalk.magenta('retention_agent')}`);
+  console.log(`Active Agents:           ${chalk.magenta('rsa_analyst, rsa_copywriter, rsa_review, pmax_analyst, pmax_copywriter')}`);
   console.log(chalk.gray('---------------------------\n'));
 
   const choice = await select({
