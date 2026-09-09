@@ -1,0 +1,916 @@
+{
+    "name": "AIP SWA Conversion Retention RSA",
+    "flow": [
+        {
+            "id": 5,
+            "module": "util:SetVariables",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "scope": "roundtrip",
+                "variables": [
+                    {
+                        "name": "email",
+                        "value": "slavawagner.sw@gmail.com"
+                    },
+                    {
+                        "name": "customer_id",
+                        "value": "2586797344"
+                    },
+                    {
+                        "name": "Project",
+                        "value": "Slava Wagner"
+                    },
+                    {
+                        "name": "URL",
+                        "value": "https://slavawagner.de"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": -829,
+                    "y": 6,
+                    "name": "Eingabe"
+                },
+                "restore": {
+                    "expect": {
+                        "scope": {
+                            "label": "One cycle"
+                        },
+                        "variables": {
+                            "items": [
+                                null,
+                                null,
+                                null,
+                                null
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "variables",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": "Variable name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "any",
+                                    "label": "Variable value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Variable"
+                        },
+                        "type": "array",
+                        "label": "Variables",
+                        "validate": {
+                            "unique": {
+                                "by": "name"
+                            }
+                        }
+                    },
+                    {
+                        "name": "scope",
+                        "type": "select",
+                        "label": "Variable lifetime",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "roundtrip",
+                                "execution"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "email",
+                        "type": "any",
+                        "label": "email"
+                    },
+                    {
+                        "name": "customer_id",
+                        "type": "any",
+                        "label": "customer_id"
+                    },
+                    {
+                        "name": "Project",
+                        "type": "any",
+                        "label": "Project"
+                    },
+                    {
+                        "name": "URL",
+                        "type": "any",
+                        "label": "URL"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 13,
+            "module": "datastore:SearchRecord",
+            "version": 1,
+            "parameters": {
+                "limit": null,
+                "datastore": 127560,
+                "continueWhenNoRes": false
+            },
+            "mapper": {
+                "sort": [],
+                "filter": [
+                    [
+                        {
+                            "a": "Plattform",
+                            "b": "Google Ads API Version",
+                            "o": "text:contain"
+                        }
+                    ]
+                ],
+                "mappAbleLimit": ""
+            },
+            "metadata": {
+                "designer": {
+                    "x": -541,
+                    "y": 13,
+                    "name": "Google Ads API Version"
+                },
+                "restore": {
+                    "parameters": {
+                        "datastore": {
+                            "label": "Versionsparameter"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "datastore",
+                        "type": "datastore",
+                        "label": "Data store",
+                        "required": true
+                    },
+                    {
+                        "name": "continueWhenNoRes",
+                        "type": "boolean",
+                        "label": "Continue the execution of the route even if the module returns no results"
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "filter",
+                        "type": "filter",
+                        "label": "Filter",
+                        "options": "rpc://datastore/1.12.1/RpcGetUDTKeys",
+                        "required": true
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "select",
+                                "label": "Key",
+                                "dynamic": true,
+                                "options": [],
+                                "required": true
+                            },
+                            {
+                                "name": "order",
+                                "type": "select",
+                                "label": "Order",
+                                "options": [
+                                    {
+                                        "label": "Ascending",
+                                        "value": 1
+                                    },
+                                    {
+                                        "label": "Descending",
+                                        "value": -1
+                                    }
+                                ],
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "mappAbleLimit",
+                        "type": "uinteger",
+                        "label": "Mappable Limit"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "key",
+                        "type": "text",
+                        "label": "Key"
+                    },
+                    {
+                        "name": "data",
+                        "spec": [
+                            {
+                                "help": "",
+                                "name": "Plattform",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            },
+                            {
+                                "help": "",
+                                "name": "Text",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 14,
+            "module": "datastore:SearchRecord",
+            "version": 1,
+            "parameters": {
+                "limit": null,
+                "datastore": 127560,
+                "continueWhenNoRes": false
+            },
+            "mapper": {
+                "sort": [],
+                "filter": [
+                    [
+                        {
+                            "a": "Plattform",
+                            "b": "Gemini Version",
+                            "o": "text:contain"
+                        }
+                    ]
+                ],
+                "mappAbleLimit": ""
+            },
+            "metadata": {
+                "designer": {
+                    "x": -246,
+                    "y": 11,
+                    "name": "Gemini API Version"
+                },
+                "restore": {
+                    "parameters": {
+                        "datastore": {
+                            "label": "Versionsparameter"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "datastore",
+                        "type": "datastore",
+                        "label": "Data store",
+                        "required": true
+                    },
+                    {
+                        "name": "continueWhenNoRes",
+                        "type": "boolean",
+                        "label": "Continue the execution of the route even if the module returns no results"
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "filter",
+                        "type": "filter",
+                        "label": "Filter",
+                        "options": "rpc://datastore/1.12.1/RpcGetUDTKeys",
+                        "required": true
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "select",
+                                "label": "Key",
+                                "dynamic": true,
+                                "options": [],
+                                "required": true
+                            },
+                            {
+                                "name": "order",
+                                "type": "select",
+                                "label": "Order",
+                                "options": [
+                                    {
+                                        "label": "Ascending",
+                                        "value": 1
+                                    },
+                                    {
+                                        "label": "Descending",
+                                        "value": -1
+                                    }
+                                ],
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "mappAbleLimit",
+                        "type": "uinteger",
+                        "label": "Mappable Limit"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "key",
+                        "type": "text",
+                        "label": "Key"
+                    },
+                    {
+                        "name": "data",
+                        "spec": [
+                            {
+                                "help": "",
+                                "name": "Plattform",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            },
+                            {
+                                "help": "",
+                                "name": "Text",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 8,
+            "module": "google-ads-campaign-management:makeApiCall",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 7459369
+            },
+            "mapper": {
+                "url": "/v{{13.data.Text}}/customers/{{5.customer_id}}/googleAds:searchStream",
+                "body": "{\r\n  \"query\": \"SELECT campaign.name, campaign.id, ad_group_ad.ad.id, ad_group_ad.ad.responsive_search_ad.headlines, ad_group_ad.ad.responsive_search_ad.descriptions, ad_group_ad.ad.final_urls, ad_group_ad.ad_group, metrics.all_conversions, metrics.cost_per_all_conversions, metrics.cost_micros FROM ad_group_ad WHERE ad_group_ad.ad.type = 'RESPONSIVE_SEARCH_AD' AND ad_group_ad.status = 'ENABLED' AND ad_group.status = 'ENABLED' AND campaign.status = 'ENABLED' AND segments.date DURING LAST_30_DAYS ORDER BY metrics.all_conversions DESC LIMIT 1\"\r\n}",
+                "method": "POST",
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 36,
+                    "y": 6,
+                    "name": "RSA Assets"
+                },
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose"
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-ads2"
+                            },
+                            "label": "Slava Wagner (Slava Wagner Onlinemarketing)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-ads2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "text",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key"
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key"
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 10,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{8.body[].results}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 326,
+                    "y": -9
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "ai-local-agent:RunLocalAIAgent",
+            "version": 0,
+            "parameters": {
+                "makeConnectionId": 14322788
+            },
+            "mapper": {
+                "files": [],
+                "message": "Bitte starte den datengetriebenen Prozess zur Erstellung einer conversionstarken RSA-Anzeigenalternative (Responsive Suchanzeige).\n\nGehe streng nach deiner Systeminstruktion vor und durchlaufe die Agenten-Pipeline nacheinander:\n\nSchritt 1: Historische Datenanalyse & Pattern Brief (Agent 1)\nNutze die Google Ads API, um die Performance-Daten der letzten 90 Tage für Search-Kampagnen abzurufen (führe Query A und Query B aus). Ermittle die Ziel-Anzeigengruppe und bewerte die Text-Assets anhand ihres performance_labels, gewichtet nach der Anzeigengruppen-Performance (Conversions).\n👉 Erstelle den vollständigen 'RSA PERFORMANCE PATTERN BRIEF' und gib mir diesen hier im Chat einmal vollständig aus, damit ich die extrahierten Muster sehen und freigeben kann.\n\nSchritt 2: Kreation der Anzeigenalternative (Agent 2)\nSobald der Brief steht, übernimmst du die Rolle des Copywriters. Integriere zwingend die geforderten lexikalischen Hooks, Konsistenz-Wörter und CTA-Verben aus dem Brief. Erstelle exakt 15 Headlines und 4 Descriptions. Nutze dafür bewusst ein anderes Framework als das historische Gewinner-Framework.\n\nSchritt 3: Quality & Compliance Review (Agent 3)\nPrüfe die generierten Texte. Entferne rigoros alle Punkte am Satzende von Headlines, lösche jegliche Ausrufezeichen in allen Texten und wende die Sperrwörter-Liste ('ROI', 'Sofort', 'Jetzt', 'Bewiesen', 'Boost') sowie die Negativmuster aus den 'LOW'-Assets an. Glätte die Sprache für maximale Menschenähnlichkeit.\n\nSchritt 4: Direkter Google Ads API Upload (Agent 4)\nFühre den Upload für die Ziel-Anzeigengruppe autonom durch:\n\nErstelle alle 19 neuen Text-Assets (15 Headlines, 4 Descriptions) gebündelt in einem einzigen Mutate-Call und merke dir die zurückgegebenen Resource Names.\n\nErstelle direkt im Anschluss die neue Responsive Suchanzeige (RSA) in der Ziel-Anzeigengruppe mit dem Status 'PAUSED'. Mappe die neuen Text-Resource-Names fehlerfrei als Arrays in den finalen Payload (responsiveSearchAd.headlines und responsiveSearchAd.descriptions).\n\nBitte starte jetzt mit Schritt 1 und bestätige mir, wenn du die Queries abrufst!\n\nCustomer ID: \"{{5.customer_id}}\"\n\nWichtig: Für alle API Calls bei Google Ads darfst du nur die API-Version: v{{13.data.Text}} verwenden! Keine Version darf unter {{13.data.Text}} sein.\n\nKeine andere API-Version soll verwendet, außer: v{{13.data.Text}} in der Google Ads API!\n",
+                "timeout": "",
+                "threadId": "12999041",
+                "outputType": "text",
+                "modelConfig": {
+                    "recursionLimit": 300,
+                    "iterationsFromHistoryCount": "30"
+                },
+                "defaultModel": "{{14.data.Text}}",
+                "systemPrompt": "System-Instruktion: RSA AI Asset Generator & API Uploader\n\nWichtig: Für alle API Calls bei Google Ads darfst du nur die API-Version: v{{13.data.Text}} verwenden! Keine Version darf unter {{13.data.Text}} sein.\n\nKeine andere API-Version soll verwendet, außer: v{{13.data.Text}} in der Google Ads API!\n\nAgent 1: Der Conversion Retention Agent für RSAs\nDu bist Analyst, nicht Kreativer. Deine Aufgabe ist es, aus der historischen Asset-Performance bestehender Responsive Suchanzeigen (RSAs) die nachweislich konvertierenden Sprachmuster zu extrahieren und als strukturierten Brief an den Creative Copywriter (Agent 2) zu übergeben.\n\nDie Entität, um die es geht:\nCampaign Resource Name: \"{{10.campaign.resourceName}}\"\nAd Group Resource Name: \"{{10.adGroupAd.adGroup}}\"\nCustomer ID: \"{{5.customer_id}}\"\n\nInstruktion:\nDu arbeitest auf zwei Asset-Ebenen: Headlines (30 Zeichen) und Descriptions (90 Zeichen). Das performance_label und die Asset-Level-Metriken liefern dir das Signal, um Muster verlässlich abzuleiten. Du erfindest nichts. Du erkennst Muster, gewichtest sie nach Performance und gibst sie weiter.\n\nAufgabe 1: Erweiterten Data Pull anfordern\nStelle sicher, dass du zusätzlich zu den Bestandsanzeigen die RSA Asset Performance der letzten 90 Tage abrufst. Führe folgende Queries aus:\n\nQuery A – RSA Asset Performance (Kerndatenquelle):\nSELECT\nad_group.id,\nad_group.name,\nasset.id,\nasset.text_asset.text,\nad_group_ad_asset_view.field_type,\nad_group_ad_asset_view.performance_label,\ncampaign.id,\ncampaign.name\nFROM ad_group_ad_asset_view\nWHERE ad_group_ad.ad.type = 'RESPONSIVE_SEARCH_AD'\nAND ad_group_ad_asset_view.field_type IN ('HEADLINE', 'DESCRIPTION')\nAND campaign.advertising_channel_type = 'SEARCH'\nAND campaign.status = 'ENABLED'\nAND ad_group.status = 'ENABLED'\n\nQuery B – Ad Group Level Performance (Kontext, welche Gruppen liefern):\nSELECT\nad_group.id,\nad_group.name,\ncampaign.id,\nmetrics.impressions,\nmetrics.clicks,\nmetrics.conversions,\nmetrics.conversions_value,\nmetrics.cost_micros\nFROM ad_group\nWHERE campaign.advertising_channel_type = 'SEARCH'\nAND segments.date DURING LAST_90_DAYS\nAND ad_group.status = 'ENABLED'\n\nAufgabe 2: Asset-Klassifikation und Performance-Scoring\nKlassifiziere wie folgt:\n\nBEST: Top-Performer (Gewicht 3x)\n\nGOOD: Überdurchschnittlich (Gewicht 2x)\n\nLOW: Schwach (0x, Negativliste)\n\nLEARNING / PENDING / UNSPECIFIED: Ignorieren\n\nBerechne pro Anzeigengruppe einen Performance-Faktor aus Query B:\nAd Group Faktor = (Conversions der Gruppe / Median-Conversions aller Gruppen im Account).\nMultipliziere die Asset-Gewichtung mit dem Ad-Group-Faktor.\nMindestschwelle: Anzeigengruppe muss ≥ 5 Conversions im Zeitraum haben, sonst Assets dieser Gruppe ignorieren.\n\nAufgabe 3: Pattern Extraction – getrennt nach Asset-Klassen\nAnalysiere BEST- und GOOD-Assets getrennt für die zwei Asset-Klassen:\n\nHeadlines (max. 30 Zeichen) – Kurze Hooks\n\nStrukturmuster: Frage / Aussage / Imperativ / Zahl-Nutzen / Nominalphrase\n\nTop 15 Wörter (gewichtet)\n\nCTA-Verben separat\n\nDescriptions (max. 90 Zeichen) – Argumentative Ergänzung\n\nStrukturmuster: Faktenlisten / Erklärungen / sekundäre CTAs\n\nTop 15 Wörter (gewichtet)\n\nÜbergreifend:\n\nLexikalische Hooks: Welche Substantive, Verben, Adjektive sind durchgängig in Top-Performern?\n\nFramework-Dominanz: PAS / Benefit-First / Social Proof / Rational Utility\n\nNegativmuster aus LOW-Assets (Sperrliste)\n\nAufgabe 4: Output – RSA Performance Pattern Brief\nÜbergib an Agent 2 in genau diesem Format (reiner Text, kein Markdown):\n\n=== RSA PERFORMANCE PATTERN BRIEF ===\nZiel-Kampagne: {CAMPAIGN_NAME}\nFinal URL: {FINAL_URL}\nAnalysezeitraum: 90 Tage\nAsset-Basis: {Anzahl} BEST + {Anzahl} GOOD über {Anzahl} Anzeigengruppen\n\n--- HEADLINES (max. 30 Zeichen) ---\nTop-Strukturen: [z.B. \"Zahl + Nutzen\", \"Imperativ + Objekt\"]\nTop-Wörter (gewichtet): [Liste]\nTop-CTA-Verben: [Liste]\nFramework-Verteilung: PAS X% | Benefit Y% | Social Proof Z% | Rational W%\n\n--- DESCRIPTIONS (max. 90 Zeichen) ---\nTop-Strukturen: [z.B. \"Fakt + Fakt + CTA\"]\nTop-Wörter (gewichtet): [Liste]\nSekundäre CTA-Verben: [Liste]\n\n--- KONSISTENZ-WÖRTER (durchgängig in Top-Performern) ---\n[Top 8 Wörter, die in Headlines + Descriptions auftauchen]\n\n--- NEGATIVLISTE (nicht verwenden) ---\nWörter/Phrasen aus LOW-Assets: [Liste]\nSperrwörter: \"ROI\", \"Sofort\", \"Jetzt\", \"Bewiesen\", \"Boost\"\n\n--- EMPFEHLUNG AN AGENT 2 ---\nDominantes Framework Top-Performer: {Framework}\n→ Wähle bewusst ein ANDERES Framework für Diversifikation.\n\nPflichtintegration:\n\nMindestens 5 lexikalische Hooks aus Headlines-Top-Wörtern\n\nMindestens 3 Konsistenz-Wörter\n\nMindestens 2 CTA-Verben aus der Liste\n=== ENDE BRIEF ===\n\n👉 Übergabe an Agent 2\n\nAgent 2: Creative Copywriter (RSA Assets Generator)\nRolle:\nDu bist ein High-End Google Ads Creative Strategist für Search Ads. Erstelle aus den in Agent 1 gefundenen Patterns eine Super-Anzeige.\n\nDu erhältst den RSA Performance Pattern Brief. Behandle ihn als verbindlichen Input:\n\nIntegriere die Pflicht-Hooks, Konsistenz-Wörter und CTA-Verben.\n\nHalte dich strikt an die Negativliste.\n\nWähle bewusst ein anderes Framework als das dominante Framework der historischen Top-Performer.\n\nOutput (STRICT)\nGeneriere exakt:\n\n15 Headlines (max. 30 Zeichen)\n\n4 Descriptions (max. 90 Zeichen, hier: 70)\n\nRegeln\nFokus: Transaktionale Ansprachen, Themen, die auf der Landingpage genannt werden.\n\nSprache: Neutral, professionell, nicht reißerisch, exakt dieselbe Sprache wie die Bestandsanzeige.\n\nWahrheitsgehalt: Keine erfundenen Aussagen (Website per Online-Suche prüfen).\n\nWähle EIN Framework (PAS, Benefit-First, Social Proof oder Rational Utility).\n\n👉 Übergabe an Agent 3\n\nAgent 3: Quality & Compliance Review\nRolle: Du validierst Assets für Responsive Suchanzeigen (RSA).\n\nAufgabe:\n\nEntferne bei Headlines IMMER Punkte am Satzende. Es dürfen niemals Punkte am Ende einer Headline stehen.\n\nEs dürfen niemals Ausrufezeichen stehen, weder in Headlines noch in Descriptions.\n\nErsetze immer Formulierungen wie: \"ROI\", \"Sofort\", \"Jetzt\", \"Bewiesen\" oder \"Boost\".\n\nSprachliche Glätte\nLies jeden Text laut vor (mental). Klingt er wie ein echter Mensch?\n\nErsetze unnatürliche Wortstellungen und Substantivierungsketten.\n\nEntschärfe unbelegte Nutzen- oder Ergebnisversprechen.\n\nVermeidung zu allgemeiner Aussagen\nErsetze Floskeln wie „Perfekt für alle“, „Die beste Lösung“, „Ideal geeignet“, „Einfach, schnell, effizient“ durch konkrete, neutrale Beschreibungen. Keine stilistischen Brüche zur Landingpage.\n\n👉 Übergabe an Agent 4\n\nAgent 4: Asset Creation & RSA Builder\nRolle: Du bist der Google Ads API Engineer für Search Kampagnen.\n\n🔧 SCHRITT 1: Asset Creation (Text Assets)\nDu MUSST ALLE generierten Text-Assets in EINEM Request erstellen.\n\nBasepath:\n/v{{13.data.Text}}/customers/{{5.customer_id}}/googleAds:mutate\n\nPayload:\n{\n\"mutateOperations\": [\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_1>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_2>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_3>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_4>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_5>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_6>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_7>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_8>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_9>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_10>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_11>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_12>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_13>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_14>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<headline_15>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<description_1>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<description_2>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<description_3>\" } } } },\n{ \"assetOperation\": { \"create\": { \"textAsset\": { \"text\": \"<description_4>\" } } } }\n]\n}\n\n⚠️ KRITISCH\nSpeichere die Output-IDs als:\nmutateOperationResponses[].assetResult.resourceName\n\n🔧 SCHRITT 2: RSA (Anzeige) erstellen.\nJetzt erstellst du die neue Responsive Suchanzeige.\n\nMappe die Asset Resource Names, die du im vorherigen Schritt generiert hast, in die Platzhalter <headline_1_resource_name> etc.\n\nBasepath:\n/v{{13.data.Text}}/customers/{{5.customer_id}}/googleAds:mutate\n\nPayload:\n{\n\"mutateOperations\": [\n{\n\"adGroupAdOperation\": {\n\"create\": {\n\"adGroup\": \"{{10.adGroupAd.adGroup}}\",\n\"status\": \"PAUSED\",\n\"ad\": {\n\"finalUrls\": [\"{{10.adGroupAd.ad.finalUrls[]}}\"],\n\"responsiveSearchAd\": {\n\"headlines\": [\n{ \"asset\": \"<headline_1_resource_name>\" },\n{ \"asset\": \"<headline_2_resource_name>\" },\n{ \"asset\": \"<headline_3_resource_name>\" },\n{ \"asset\": \"<headline_4_resource_name>\" },\n{ \"asset\": \"<headline_5_resource_name>\" },\n{ \"asset\": \"<headline_6_resource_name>\" },\n{ \"asset\": \"<headline_7_resource_name>\" },\n{ \"asset\": \"<headline_8_resource_name>\" },\n{ \"asset\": \"<headline_9_resource_name>\" },\n{ \"asset\": \"<headline_10_resource_name>\" },\n{ \"asset\": \"<headline_11_resource_name>\" },\n{ \"asset\": \"<headline_12_resource_name>\" },\n{ \"asset\": \"<headline_13_resource_name>\" },\n{ \"asset\": \"<headline_14_resource_name>\" },\n{ \"asset\": \"<headline_15_resource_name>\" }\n],\n\"descriptions\": [\n{ \"asset\": \"<description_1_resource_name>\" },\n{ \"asset\": \"<description_2_resource_name>\" },\n{ \"asset\": \"<description_3_resource_name>\" },\n{ \"asset\": \"<description_4_resource_name>\" }\n]\n}\n}\n}\n}\n}\n]\n}\n\""
+            },
+            "metadata": {
+                "designer": {
+                    "x": 633,
+                    "y": -6
+                },
+                "restore": {
+                    "expect": {
+                        "files": {
+                            "mode": "chose"
+                        },
+                        "outputType": {
+                            "label": "Text"
+                        },
+                        "defaultModel": {
+                            "mode": "edit"
+                        }
+                    },
+                    "parameters": {
+                        "makeConnectionId": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "gemini-ai-q9zyjp"
+                            },
+                            "label": "Gemini 2026"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "makeConnectionId",
+                        "type": "account:ai-provider,openai-gpt-3,anthropic-claude,gemini-ai-q9zyjp,ai-agent-foundry-openai,ai-agent-foundry-non-openai,mistral-ai,cohere,groq,ai-agent-xai,amazon-bedrock,ai-agent-openai-compatible",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "defaultModel",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "systemPrompt",
+                        "type": "text",
+                        "label": "Instructions"
+                    },
+                    {
+                        "name": "message",
+                        "type": "text",
+                        "label": "Input",
+                        "required": true
+                    },
+                    {
+                        "name": "files",
+                        "spec": [
+                            {
+                                "name": "fileName",
+                                "type": "filename",
+                                "label": "File name",
+                                "semantic": "file:name"
+                            },
+                            {
+                                "name": "data",
+                                "type": "buffer",
+                                "label": "Data",
+                                "semantic": "file:data"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Input files"
+                    },
+                    {
+                        "name": "threadId",
+                        "type": "text",
+                        "label": "Conversation ID",
+                        "validate": {
+                            "max": 256
+                        }
+                    },
+                    {
+                        "name": "modelConfig",
+                        "spec": [
+                            {
+                                "name": "tokenLimit",
+                                "type": "hidden",
+                                "label": "Max output tokens"
+                            },
+                            {
+                                "name": "recursionLimit",
+                                "type": "hidden",
+                                "label": "Steps per agent call"
+                            },
+                            {
+                                "name": "iterationsFromHistoryCount",
+                                "type": "number",
+                                "label": "Maximum conversation history"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Model configuration"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "number",
+                        "label": "Step timeout",
+                        "validate": {
+                            "max": 600,
+                            "min": 120
+                        }
+                    },
+                    {
+                        "name": "outputType",
+                        "type": "select",
+                        "label": "Response format",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "make-schema",
+                                "udt-schema"
+                            ]
+                        }
+                    }
+                ]
+            },
+            "tools": [
+                {
+                    "name": "Agent knowledge",
+                    "description": "Search uploaded files using semantic similarity to retrieve relevant facts and context needed to answer the user’s question. Use this tool when the answer depends on information contained in the uploaded documents.",
+                    "flow": [
+                        {
+                            "id": 3,
+                            "module": "knowledge:KnowledgeStandAlone",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "limit": "50",
+                                "query": "{{2.query}}",
+                                "fileIds": [],
+                                "filestorage": [
+                                    "fa640c68-ba18-48c1-ad47-484c2aa01359"
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 838,
+                                    "y": 261
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "query": {
+                                            "extra": {
+                                                "aiHelp": "A concise natural-language description of the information to look for. The query is embedded and matched by semantic similarity (cosine distance), so it should express intent and meaning, not exact phrasing, keywords, or technical instructions."
+                                            }
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "filestorage",
+                                        "type": "filestorage",
+                                        "label": "Knowledge files"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "type": "text",
+                                        "label": "Search query",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "fileIds",
+                                        "type": "hidden",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "type": "number",
+                                        "label": "Limit",
+                                        "required": true,
+                                        "validate": {
+                                            "max": 500,
+                                            "min": 1
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Make an API Call",
+                    "description": "Performs an arbitrary authorized API call.",
+                    "flow": [
+                        {
+                            "id": 4,
+                            "module": "google-ads-campaign-management:makeApiCall",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 7459369
+                            },
+                            "mapper": {
+                                "qs": "{{2.qs}}",
+                                "url": "{{2.url}}",
+                                "body": "{{2.body}}",
+                                "method": "POST",
+                                "headers": "{{2.headers}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 829,
+                                    "y": 526
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "qs": {
+                                            "mode": "edit"
+                                        },
+                                        "url": {
+                                            "extra": {
+                                                "aiHelp": "Enter a path relative to `https://googleads.googleapis.com`.\nFor example, `/vX/customers:listAccessibleCustomers`, where `X` is a version number."
+                                            }
+                                        },
+                                        "method": {
+                                            "mode": "chose",
+                                            "label": "POST"
+                                        },
+                                        "headers": {
+                                            "mode": "edit",
+                                            "extra": {
+                                                "aiHelp": "You don't have to add authorization headers; we already did that for you."
+                                            }
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-ads2"
+                                            },
+                                            "label": "Slava Wagner (Slava Wagner Onlinemarketing)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google-ads2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "url",
+                                        "type": "text",
+                                        "label": "URL",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "method",
+                                        "type": "select",
+                                        "label": "Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "GET",
+                                                "POST",
+                                                "PUT",
+                                                "PATCH",
+                                                "DELETE"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Headers"
+                                    },
+                                    {
+                                        "name": "qs",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Query String"
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu2.make.com",
+        "notes": []
+    }
+}

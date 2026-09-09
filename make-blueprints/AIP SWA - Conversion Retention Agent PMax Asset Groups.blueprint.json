@@ -1,0 +1,1875 @@
+{
+    "name": "AIP SWA - Conversion Retention Agent PMax Asset Groups ",
+    "flow": [
+        {
+            "id": 119,
+            "module": "util:SetVariables",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "scope": "roundtrip",
+                "variables": [
+                    {
+                        "name": "email",
+                        "value": "slavawagner.sw@gmail.com"
+                    },
+                    {
+                        "name": "customer_id",
+                        "value": "2586797344"
+                    },
+                    {
+                        "name": "Project",
+                        "value": "Slava Wagner"
+                    },
+                    {
+                        "name": "URL",
+                        "value": "https://slavawagner.de"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 102,
+                    "y": 1734,
+                    "name": "Eingabe"
+                },
+                "restore": {
+                    "expect": {
+                        "scope": {
+                            "label": "One cycle"
+                        },
+                        "variables": {
+                            "items": [
+                                null,
+                                null,
+                                null,
+                                null
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "variables",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": "Variable name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "any",
+                                    "label": "Variable value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Variable"
+                        },
+                        "type": "array",
+                        "label": "Variables",
+                        "validate": {
+                            "unique": {
+                                "by": "name"
+                            }
+                        }
+                    },
+                    {
+                        "name": "scope",
+                        "type": "select",
+                        "label": "Variable lifetime",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "roundtrip",
+                                "execution"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "email",
+                        "type": "any",
+                        "label": "email"
+                    },
+                    {
+                        "name": "customer_id",
+                        "type": "any",
+                        "label": "customer_id"
+                    },
+                    {
+                        "name": "Project",
+                        "type": "any",
+                        "label": "Project"
+                    },
+                    {
+                        "name": "URL",
+                        "type": "any",
+                        "label": "URL"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 182,
+            "module": "datastore:SearchRecord",
+            "version": 1,
+            "parameters": {
+                "limit": null,
+                "datastore": 127560,
+                "continueWhenNoRes": false
+            },
+            "mapper": {
+                "sort": [],
+                "filter": [
+                    [
+                        {
+                            "a": "Plattform",
+                            "b": "Google Ads API Version",
+                            "o": "text:contain"
+                        }
+                    ]
+                ],
+                "mappAbleLimit": ""
+            },
+            "metadata": {
+                "designer": {
+                    "x": 404,
+                    "y": 1734,
+                    "name": "Google Ads API Version"
+                },
+                "restore": {
+                    "parameters": {
+                        "datastore": {
+                            "label": "Versionsparameter"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "datastore",
+                        "type": "datastore",
+                        "label": "Data store",
+                        "required": true
+                    },
+                    {
+                        "name": "continueWhenNoRes",
+                        "type": "boolean",
+                        "label": "Continue the execution of the route even if the module returns no results"
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "filter",
+                        "type": "filter",
+                        "label": "Filter",
+                        "options": "rpc://datastore/1.15.1/RpcGetUDTKeys",
+                        "required": true
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "select",
+                                "label": "Key",
+                                "dynamic": true,
+                                "options": [],
+                                "required": true
+                            },
+                            {
+                                "name": "order",
+                                "type": "select",
+                                "label": "Order",
+                                "options": [
+                                    {
+                                        "label": "Ascending",
+                                        "value": 1
+                                    },
+                                    {
+                                        "label": "Descending",
+                                        "value": -1
+                                    }
+                                ],
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "mappAbleLimit",
+                        "type": "uinteger",
+                        "label": "Mappable Limit"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "key",
+                        "type": "text",
+                        "label": "Key"
+                    },
+                    {
+                        "name": "data",
+                        "spec": [
+                            {
+                                "help": "",
+                                "name": "Plattform",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            },
+                            {
+                                "help": "",
+                                "name": "Text",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 183,
+            "module": "datastore:SearchRecord",
+            "version": 1,
+            "parameters": {
+                "limit": null,
+                "datastore": 127560,
+                "continueWhenNoRes": false
+            },
+            "mapper": {
+                "sort": [],
+                "filter": [
+                    [
+                        {
+                            "a": "Plattform",
+                            "b": "Gemini Version",
+                            "o": "text:contain"
+                        }
+                    ]
+                ],
+                "mappAbleLimit": ""
+            },
+            "metadata": {
+                "designer": {
+                    "x": 706,
+                    "y": 1733,
+                    "name": "Gemini API Version"
+                },
+                "restore": {
+                    "parameters": {
+                        "datastore": {
+                            "label": "Versionsparameter"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "datastore",
+                        "type": "datastore",
+                        "label": "Data store",
+                        "required": true
+                    },
+                    {
+                        "name": "continueWhenNoRes",
+                        "type": "boolean",
+                        "label": "Continue the execution of the route even if the module returns no results"
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "filter",
+                        "type": "filter",
+                        "label": "Filter",
+                        "options": "rpc://datastore/1.15.1/RpcGetUDTKeys",
+                        "required": true
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "select",
+                                "label": "Key",
+                                "dynamic": true,
+                                "options": [],
+                                "required": true
+                            },
+                            {
+                                "name": "order",
+                                "type": "select",
+                                "label": "Order",
+                                "options": [
+                                    {
+                                        "label": "Ascending",
+                                        "value": 1
+                                    },
+                                    {
+                                        "label": "Descending",
+                                        "value": -1
+                                    }
+                                ],
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "mappAbleLimit",
+                        "type": "uinteger",
+                        "label": "Mappable Limit"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "key",
+                        "type": "text",
+                        "label": "Key"
+                    },
+                    {
+                        "name": "data",
+                        "spec": [
+                            {
+                                "help": "",
+                                "name": "Plattform",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            },
+                            {
+                                "help": "",
+                                "name": "Text",
+                                "type": "text",
+                                "label": null,
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 124,
+            "module": "google-ads-campaign-management:makeApiCall",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 7459369
+            },
+            "mapper": {
+                "url": "/v{{182.data.Text}}/customers/{{119.customer_id}}/googleAds:searchStream",
+                "body": "{\r\n  \"query\": \"SELECT campaign.id, campaign.name, asset_group.id, asset_group_asset.asset_group, asset_group_asset.field_type, asset.text_asset.text, asset.image_asset.full_size.url, asset_group.final_urls FROM asset_group_asset WHERE asset.text_asset.text IS NOT NULL AND campaign.status = 'ENABLED' AND asset_group.status = 'ENABLED' ORDER BY campaign.id DESC LIMIT 20\"\r\n}",
+                "method": "POST",
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 980,
+                    "y": 1468,
+                    "name": "PMax Text Assets"
+                },
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose"
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-ads2"
+                            },
+                            "label": "Slava Wagner (Slava Wagner Onlinemarketing)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-ads2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "text",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key"
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key"
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 125,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{124.body[].results}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 982,
+                    "y": 1747
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 169,
+            "module": "google-ads-campaign-management:makeApiCall",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 7459369
+            },
+            "mapper": {
+                "url": "/v{{182.data.Text}}/customers/{{119.customer_id}}/googleAds:searchStream",
+                "body": "{\r\n  \"query\": \"SELECT campaign.id, campaign.name, campaign.status, asset_group.id, asset_group.name, asset_group.status, asset_group.final_urls, asset_group_asset.field_type, asset.image_asset.full_size.url FROM asset_group_asset WHERE campaign.advertising_channel_type = 'PERFORMANCE_MAX' AND asset_group_asset.field_type = 'MARKETING_IMAGE' AND asset_group_asset.asset_group = '{{125.assetGroup.resourceName}}' LIMIT 200\"\r\n}",
+                "method": "POST",
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 979,
+                    "y": 2044,
+                    "name": "PMax Images"
+                },
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose"
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-ads2"
+                            },
+                            "label": "Slava Wagner (Slava Wagner Onlinemarketing)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-ads2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "text",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key"
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key"
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 300,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{169.body[].results}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 979,
+                    "y": 2356
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 297,
+            "module": "csv:CreateAdvancedAggregator",
+            "version": 1,
+            "parameters": {
+                "type": 450211,
+                "feeder": 300,
+                "delimiter": ",",
+                "newlineType": "LF",
+                "delimiterType": "other",
+                "includeHeaders": true
+            },
+            "mapper": {
+                "Data": "{{300.asset.resourceName}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1276,
+                    "y": 2049
+                },
+                "restore": {
+                    "extra": {
+                        "feeder": {
+                            "label": "Iterator [300]"
+                        }
+                    },
+                    "parameters": {
+                        "type": {
+                            "label": "Data"
+                        },
+                        "newlineType": {
+                            "label": "LF"
+                        },
+                        "delimiterType": {
+                            "label": "Other"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure",
+                        "required": true
+                    },
+                    {
+                        "name": "includeHeaders",
+                        "type": "boolean",
+                        "label": "Include headers in the first row",
+                        "required": true
+                    },
+                    {
+                        "name": "delimiterType",
+                        "type": "select",
+                        "label": "Delimiter",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                ",",
+                                "\t",
+                                "other"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "newlineType",
+                        "type": "select",
+                        "label": "Newline",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "LF",
+                                "CRLF"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "delimiter",
+                        "type": "text",
+                        "label": "Delimiter character",
+                        "required": true,
+                        "validate": {
+                            "max": 1,
+                            "min": 1
+                        }
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "Data",
+                        "type": "text",
+                        "label": null
+                    }
+                ]
+            }
+        },
+        {
+            "id": 319,
+            "module": "gemini-ai:createACompletionGeminiPro",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 14322788
+            },
+            "filter": null,
+            "mapper": {
+                "model": "{{183.data.Text}}",
+                "contents": [
+                    {
+                        "role": "user",
+                        "parts": [
+                            {
+                                "text": "Bitte filtere aus dem nachfolgenden Text die Resource Names heraus und trenne diese, um sie mir anschließend im JSON-Format ohne Arrays auszugeben. \n\n###Bezeichnungen für die Werte (nur Text, keine Sonderzeichen in der Formatierung):\n- Resource Names: image_resource_name_1,\nimage_resource_name_2,\nimage_resource_name_3,\nimage_resource_name_4,\nimage_resource_name_5,\n###Tabellendaten, die den Bezeichnungen der Resource Names zugeordnet werden, müssen die gleichen bleiben, wie in der nachfolgenden CSV!\n\nHier ist meine CSV:\n\"{{297.text}}\"\n\nBitte achte darauf, dass die Trennung zwischen den Resource Names erfolgt.\n\nBitte gib die Antworten ohne Markdown-Formatierung aus.",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "generationConfig": {
+                    "imageConfig": {},
+                    "thinkingConfig": {}
+                },
+                "system_instruction": {}
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1281,
+                    "y": 1739
+                },
+                "restore": {
+                    "expect": {
+                        "model": {
+                            "mode": "edit"
+                        },
+                        "contents": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    },
+                                    "parts": {
+                                        "mode": "chose",
+                                        "items": [
+                                            {
+                                                "type": {
+                                                    "mode": "chose",
+                                                    "label": "Text"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "serviceTier": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "url_context": {
+                            "mode": "chose"
+                        },
+                        "code_execution": {
+                            "mode": "chose"
+                        },
+                        "safetySettings": {
+                            "mode": "chose"
+                        },
+                        "generationConfig": {
+                            "nested": {
+                                "imageConfig": {
+                                    "nested": {
+                                        "imageSize": {
+                                            "mode": "chose",
+                                            "label": "Empty"
+                                        }
+                                    }
+                                },
+                                "stopSequences": {
+                                    "mode": "chose"
+                                },
+                                "thinkingConfig": {
+                                    "nested": {
+                                        "thinking_level": {
+                                            "mode": "chose",
+                                            "label": "Empty"
+                                        },
+                                        "include_thoughts": {
+                                            "mode": "chose"
+                                        }
+                                    }
+                                },
+                                "mediaResolution": {
+                                    "mode": "chose",
+                                    "label": "Empty"
+                                },
+                                "responseMimeType": {
+                                    "mode": "chose",
+                                    "label": "Empty"
+                                },
+                                "responseModalities": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "system_instruction": {
+                            "nested": {
+                                "parts": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "google_maps_context": {
+                            "mode": "chose"
+                        },
+                        "google_search_context": {
+                            "mode": "chose"
+                        },
+                        "file_search_store_context": {
+                            "mode": "chose"
+                        },
+                        "function_declarations_context": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "gemini-ai-q9zyjp"
+                            },
+                            "label": "Gemini 2026"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:gemini-ai-q9zyjp",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "AI Model",
+                        "required": true
+                    },
+                    {
+                        "name": "contents",
+                        "spec": [
+                            {
+                                "name": "role",
+                                "type": "select",
+                                "label": "Role",
+                                "options": [
+                                    {
+                                        "label": "User",
+                                        "value": "user"
+                                    },
+                                    {
+                                        "label": "Model",
+                                        "value": "model"
+                                    }
+                                ],
+                                "required": true
+                            },
+                            {
+                                "name": "parts",
+                                "spec": [
+                                    {
+                                        "name": "type",
+                                        "type": "select",
+                                        "label": "Message Type",
+                                        "options": [
+                                            {
+                                                "label": "Text",
+                                                "value": "text",
+                                                "nested": [
+                                                    {
+                                                        "name": "text",
+                                                        "type": "text",
+                                                        "label": "Text",
+                                                        "required": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "label": "File",
+                                                "value": "file",
+                                                "nested": [
+                                                    {
+                                                        "name": "file_data",
+                                                        "spec": [
+                                                            {
+                                                                "name": "mime_type",
+                                                                "type": "text",
+                                                                "label": "Mime Type",
+                                                                "required": true
+                                                            },
+                                                            {
+                                                                "help": "You can use public or signed URLs as input by using the URLs.",
+                                                                "name": "file_uri",
+                                                                "type": "text",
+                                                                "label": "File URI",
+                                                                "required": true
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "File Data",
+                                                        "required": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "label": "Function Call",
+                                                "value": "functionCall",
+                                                "nested": [
+                                                    {
+                                                        "name": "functionCall",
+                                                        "spec": [
+                                                            {
+                                                                "help": "The name of the function to call.",
+                                                                "name": "name",
+                                                                "type": "text",
+                                                                "label": "Name",
+                                                                "required": true,
+                                                                "validate": {
+                                                                    "max": 64
+                                                                }
+                                                            },
+                                                            {
+                                                                "help": "The function parameters and values in JSON object format.",
+                                                                "name": "args",
+                                                                "type": "json",
+                                                                "label": "Arguments"
+                                                            },
+                                                            {
+                                                                "help": "The unique ID of the function call.",
+                                                                "name": "id",
+                                                                "type": "text",
+                                                                "label": "Function Call ID"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Function Call"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "label": "Function Response",
+                                                "value": "functionResponse",
+                                                "nested": [
+                                                    {
+                                                        "name": "functionResponse",
+                                                        "spec": [
+                                                            {
+                                                                "help": "The name of the function to call.",
+                                                                "name": "name",
+                                                                "type": "text",
+                                                                "label": "Name",
+                                                                "required": true,
+                                                                "validate": {
+                                                                    "max": 64
+                                                                }
+                                                            },
+                                                            {
+                                                                "help": "The function response in JSON object format.",
+                                                                "name": "response",
+                                                                "type": "json",
+                                                                "label": "Response",
+                                                                "required": true
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Function Response"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "thoughtSignature",
+                                        "type": "text",
+                                        "label": "Thought Signature"
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "Parts",
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
+                    },
+                    {
+                        "name": "system_instruction",
+                        "spec": [
+                            {
+                                "name": "parts",
+                                "spec": {
+                                    "name": "value",
+                                    "spec": [
+                                        {
+                                            "name": "text",
+                                            "type": "text",
+                                            "label": "Value"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Prompt"
+                                },
+                                "type": "array",
+                                "label": "Prompts"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "System Instructions"
+                    },
+                    {
+                        "name": "safetySettings",
+                        "spec": [
+                            {
+                                "name": "category",
+                                "type": "select",
+                                "label": "Category",
+                                "options": [
+                                    {
+                                        "label": "Harassment content",
+                                        "value": "HARM_CATEGORY_HARASSMENT"
+                                    },
+                                    {
+                                        "label": "Hate speech and content",
+                                        "value": "HARM_CATEGORY_HATE_SPEECH"
+                                    },
+                                    {
+                                        "label": "Sexually explicit content.",
+                                        "value": "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+                                    },
+                                    {
+                                        "label": "Dangerous content:",
+                                        "value": "HARM_CATEGORY_DANGEROUS_CONTENT"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "threshold",
+                                "type": "select",
+                                "label": "Threshold",
+                                "options": [
+                                    {
+                                        "label": "Block low and above.",
+                                        "value": "BLOCK_LOW_AND_ABOVE"
+                                    },
+                                    {
+                                        "label": "Block medium and above.",
+                                        "value": "BLOCK_MEDIUM_AND_ABOVE"
+                                    },
+                                    {
+                                        "label": "Block only high.",
+                                        "value": "BLOCK_ONLY_HIGH"
+                                    },
+                                    {
+                                        "label": "Block none.",
+                                        "value": "BLOCK_NONE"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Safety Settings"
+                    },
+                    {
+                        "name": "generationConfig",
+                        "spec": [
+                            {
+                                "name": "stopSequences",
+                                "spec": {
+                                    "name": "value",
+                                    "type": "text",
+                                    "label": "Stop Sequence"
+                                },
+                                "type": "array",
+                                "label": "Stop Sequences"
+                            },
+                            {
+                                "name": "responseModalities",
+                                "type": "select",
+                                "label": "Response Modalities",
+                                "multiple": true,
+                                "validate": {
+                                    "enum": [
+                                        "text",
+                                        "image"
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "maxOutputTokens",
+                                "type": "number",
+                                "label": "Max Output Tokens"
+                            },
+                            {
+                                "name": "temperature",
+                                "type": "number",
+                                "label": "Temperature",
+                                "validate": {
+                                    "max": 1,
+                                    "min": 0
+                                }
+                            },
+                            {
+                                "name": "topP",
+                                "type": "number",
+                                "label": "Top P",
+                                "validate": {
+                                    "max": 1,
+                                    "min": 0
+                                }
+                            },
+                            {
+                                "name": "topK",
+                                "type": "number",
+                                "label": "Top K"
+                            },
+                            {
+                                "name": "thinkingConfig",
+                                "spec": [
+                                    {
+                                        "name": "thinkingBudget",
+                                        "type": "number",
+                                        "label": "Thinking Budget"
+                                    },
+                                    {
+                                        "name": "include_thoughts",
+                                        "type": "boolean",
+                                        "label": "Include Thoughts"
+                                    },
+                                    {
+                                        "name": "thinking_level",
+                                        "type": "select",
+                                        "label": "Thinking Level",
+                                        "validate": {
+                                            "enum": [
+                                                "low",
+                                                "high"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Thinking Config"
+                            },
+                            {
+                                "name": "mediaResolution",
+                                "type": "select",
+                                "label": "Media Resolution",
+                                "validate": {
+                                    "enum": [
+                                        "media_resolution_low",
+                                        "media_resolution_medium",
+                                        "media_resolution_high"
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "imageConfig",
+                                "spec": [
+                                    {
+                                        "name": "imageSize",
+                                        "type": "select",
+                                        "label": "Image Size",
+                                        "validate": {
+                                            "enum": [
+                                                "1K",
+                                                "2K",
+                                                "4K"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Image Configuration"
+                            },
+                            {
+                                "name": "responseMimeType",
+                                "type": "select",
+                                "label": "Response Format"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Generation configurations"
+                    },
+                    {
+                        "name": "tools",
+                        "type": "any",
+                        "label": "Tools"
+                    },
+                    {
+                        "name": "tool_config",
+                        "type": "any",
+                        "label": "Tool Config"
+                    },
+                    {
+                        "name": "function_declarations_context",
+                        "type": "boolean",
+                        "label": "Function Declarations Grounding"
+                    },
+                    {
+                        "name": "url_context",
+                        "type": "boolean",
+                        "label": "URL Context"
+                    },
+                    {
+                        "name": "google_search_context",
+                        "type": "boolean",
+                        "label": "Google Search Grounding"
+                    },
+                    {
+                        "name": "code_execution",
+                        "type": "boolean",
+                        "label": "Code Execution"
+                    },
+                    {
+                        "name": "google_maps_context",
+                        "type": "boolean",
+                        "label": "Google Maps Grounding"
+                    },
+                    {
+                        "name": "file_search_store_context",
+                        "type": "boolean",
+                        "label": "File Search Store Context"
+                    },
+                    {
+                        "name": "serviceTier",
+                        "type": "select",
+                        "label": "Inference Service Tier"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 301,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {
+                "type": ""
+            },
+            "mapper": {
+                "json": "{{319.result}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1565,
+                    "y": 1730
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "Choose a data structure"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 291,
+            "module": "google-ads-campaign-management:makeApiCall",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 7459369
+            },
+            "mapper": {
+                "url": "/v{{182.data.Text}}/customers/{{119.customer_id}}/googleAds:searchStream",
+                "body": "{ \r\n  \"query\": \"SELECT campaign.id, campaign.name, campaign.status, asset_group.id, asset_group.name, asset_group.status, asset_group.final_urls, asset_group_asset.field_type, asset.image_asset.full_size.url FROM asset_group_asset WHERE campaign.advertising_channel_type = 'PERFORMANCE_MAX' AND asset_group_asset.field_type = 'SQUARE_MARKETING_IMAGE' AND asset_group_asset.asset_group = '{{125.assetGroup.resourceName}}' LIMIT 200\"\r\n}",
+                "method": "POST",
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1580,
+                    "y": 2021,
+                    "name": "PMax Square Image"
+                },
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose"
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-ads2"
+                            },
+                            "label": "Slava Wagner (Slava Wagner Onlinemarketing)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-ads2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "text",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key"
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key"
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 309,
+            "module": "ai-local-agent:RunLocalAIAgent",
+            "version": 0,
+            "parameters": {
+                "makeConnectionId": 14322788
+            },
+            "mapper": {
+                "files": [],
+                "message": "Bitte starte den datengetriebenen Prozess zur Erstellung einer conversionstarken PMax-Anzeigenalternative.\n\nGehe streng nach deiner Systeminstruktion vor und durchlaufe die Agenten-Pipeline nacheinander:\n\nSchritt 1: Historische Datenanalyse & Pattern Brief (Agent 1)\nNutze die Google Ads API, um die Performance-Daten der letzten 90 Tage abzurufen (führe Query A und Query B aus). Ermittle die Ziel-Kampagne und bewerte die Text-Assets anhand ihres performance_labels gewichtet nach der Asset-Gruppen-Performance (Conversions).\n👉 Erstelle den vollständigen 'PMAX PERFORMANCE PATTERN BRIEF' und gib mir diesen hier im Chat einmal vollständig aus, damit ich die extrahierten Muster sehen kann.\n\nSchritt 2: Kreation der Anzeigenalternative (Agent 2)\nSobald der Brief steht, übernimmst du die Rolle des Copywriters. Integriere zwingend die geforderten lexikalischen Hooks, Konsistenz-Wörter und CTA-Verben aus dem Brief. Erstelle exakt 15 Headlines, 4 Long Headlines und 4 Descriptions. Nutze dafür bewusst ein anderes Framework als das historische Gewinner-Framework.\n\nSchritt 3: Quality & Compliance Review (Agent 3)\nPrüfe die generierten Texte. Entferne rigoros alle Punkte am Satzende von Headlines, lösche jegliche Ausrufezeichen und wende die Sperrwörter-Liste ('ROI', 'Sofort', 'Jetzt', 'Bewiesen', 'Boost') sowie die Negativmuster aus den 'LOW'-Assets an. Glätte die Sprache für maximale Menschenähnlichkeit.\n\nSchritt 4: Direkter Google Ads API Upload (Agent 4)\nFühre den Upload für die Ziel-Kampagne autonom durch:\n\nErstelle alle neuen Text-Assets in einem einzigen Mutate-Call und merke dir die zurückgegebenen Resource Names.\n\nErstelle direkt im Anschluss die neue Asset-Gruppe mit dem Status 'PAUSED'. Mappe die neuen Text-Resource-Names sowie die Bild-Resource-Names der Quell-Asset-Gruppe fehlerfrei in den finalen Payload.\n\nBitte starte jetzt mit Schritt 1 und bestätige mir, wenn du die Queries abrufst!\r\n\r\n\"{{125.asset.textAsset.text}}\"\n\nHier ist die Kampagne, um die es geht:\n\nCampaign Resource Name:\n\"{{125.campaign.resourceName}}\"\n\nCustomer ID: \"{{119.customer_id}}\"\n\n###Google Ads API Version:\nWichtig: Für alle API Calls bei Google Ads darfst du nur die API-Version: v{{182.data.Text}} verwenden! Keine andere API-Version soll verwendet, außer: v{{182.data.Text}} in der Google Ads API!\n",
+                "timeout": "",
+                "threadId": "9863131",
+                "outputType": "text",
+                "modelConfig": {
+                    "recursionLimit": 300,
+                    "iterationsFromHistoryCount": "1"
+                },
+                "defaultModel": "{{183.data.Text}}",
+                "systemPrompt": "Du bist der Conversion Retention Agent für Performance Max. Du bist Analyst, nicht Kreativer. Deine Aufgabe ist es, aus der historischen Asset-Performance bestehender PMax Asset-Gruppen die nachweislich konvertierenden Sprachmuster zu extrahieren und als strukturierten Brief an den Creative Copywriter (Agent 2) zu übergeben.\n\n###Google Ads API Version:\nWichtig: Für alle API Calls bei Google Ads darfst du nur die API-Version: v{{182.data.Text}} verwenden! Keine andere API-Version soll verwendet, außer: v{{182.data.Text}} in der Google Ads API!\n\n###Die Kampagne, um die es geht:\nCampaign Resource Name:\n\"{{125.campaign.resourceName}}\"\nCustomer ID: \"{{119.customer_id}}\"\n\n###Instruktion:\nDu arbeitest auf drei Asset-Ebenen: Headlines (30 Zeichen), Long Headlines (90 Zeichen) und Descriptions (90 Zeichen). Du verstehst, dass Performance Max ein Black-Box-System ist – aber das performance_label und die Asset-Level-Metriken liefern genug Signal, um Muster verlässlich abzuleiten.\nDu erfindest nichts. Du erkennst Muster, gewichtest sie nach Performance, und gibst sie weiter.\n\nAufgabe 1: Erweiterten Data Pull anfordern\nStelle sicher, dass Agent 1 zusätzlich zu den Bestandsanzeigen die PMax Asset Performance der letzten 90 Tage abruft. Falls nicht vorhanden, fordere Agent 1 auf, folgende zusätzliche Queries auszuführen:\nQuery A – Asset Group Asset Performance (Kerndatenquelle):\nSELECT \n  asset_group_asset.asset_group,\n  asset_group_asset.asset,\n  asset_group_asset.field_type,\n  asset_group_asset.performance_label,\n  asset.text_asset.text,\n  asset_group.id,\n  asset_group.name,\n  asset_group.final_urls,\n  campaign.id,\n  campaign.name\nFROM asset_group_asset \nWHERE asset_group_asset.field_type IN ('HEADLINE', 'LONG_HEADLINE', 'DESCRIPTION')\n  AND asset.type = 'TEXT'\n  AND campaign.advertising_channel_type = 'PERFORMANCE_MAX'\n  AND campaign.status = 'ENABLED'\n  AND asset_group.status = 'ENABLED'\n\nQuery B – Asset Group Level Performance (Kontext, welche Gruppen liefern):\nSELECT \n  asset_group.id,\n  asset_group.name,\n  campaign.id,\n  metrics.impressions,\n  metrics.clicks,\n  metrics.conversions,\n  metrics.conversions_value,\n  metrics.cost_micros\nFROM asset_group \nWHERE campaign.advertising_channel_type = 'PERFORMANCE_MAX'\n  AND segments.date DURING LAST_90_DAYS\n  AND asset_group.status = 'ENABLED'\n\nAufgabe 2: Asset-Klassifikation und Performance-Scoring\nPMax-Assets erhalten von Google ein performance_label. Klassifiziere wie folgt:\nLabelBedeutungGewichtung im Pattern BriefBESTTop-Performer der Asset-Gruppe3xGOODÜberdurchschnittlich2xLOWSchwach0x (Negativliste)LEARNING / PENDING / UNSPECIFIEDNicht genug DatenIgnorieren\nWichtig bei PMax: Das Label ist relativ zur Asset-Gruppe, nicht absolut. Ein BEST-Asset in einer schwachen Asset-Gruppe (wenig Conversions) ist weniger wertvoll als ein GOOD-Asset in einer Top-Asset-Gruppe.\nDaher: Asset-Gruppen-Gewichtung anwenden.\nBerechne pro Asset-Gruppe einen Performance-Faktor aus Query B:\nAsset Group Faktor = (Conversions der Gruppe / Median-Conversions aller Gruppen im Account)\nMultipliziere die Asset-Gewichtung mit dem Asset-Group-Faktor:\n\nBEST-Asset in einer Top-Asset-Gruppe (Faktor 2.0) → Gewicht 6x\nBEST-Asset in einer Median-Asset-Gruppe (Faktor 1.0) → Gewicht 3x\nBEST-Asset in einer schwachen Asset-Gruppe (Faktor 0.3) → Gewicht 0.9x\n\nMindestschwelle: Asset-Gruppe muss ≥ 5 Conversions im Zeitraum haben, sonst → Assets dieser Gruppe ignorieren.\nAufgabe 3: Pattern Extraction – getrennt nach drei Asset-Klassen\nAnalysiere BEST- und GOOD-Assets getrennt für jede der drei Asset-Klassen, weil sie unterschiedliche Funktionen erfüllen:\nHeadlines (max. 30 Zeichen) – Kurze Hooks, hohe Frequenz\n\nStrukturmuster: Frage / Aussage / Imperativ / Zahl-Nutzen / Nominalphrase\nTop 15 Wörter (gewichtet)\nCTA-Verben separat\nWortzahl-Median der Top-Performer\n\nLong Headlines (max. 90 Zeichen) – Erweiterte Botschaft\n\nWerden in größeren Display-Slots ausgespielt. Längere Argumentationsketten möglich.\nStrukturmuster: 2-teilige Sätze / Nutzen + Begründung / Frage + Antwort\nTop 15 Wörter (gewichtet)\nAufbau: „Hauptaussage + Konkretisierung\" vs. „Konkretisierung + Hauptaussage\"\nÜbergreifende Frage: Werden hier andere Themen adressiert als in Headlines? (z.B. eher Trust, eher Methodik)\n\nDescriptions (max. 90 Zeichen) – Argumentative Ergänzung\n\nWerden meist unter dem Headline-Slot ausgespielt.\nStrukturmuster: Faktenlisten / Erklärungen / sekundäre CTAs\nTop 15 Wörter (gewichtet)\nFrage: Welche Descriptions korrelieren mit welchen Headlines in BEST-Pairings?\n\nPlus übergreifend für alle drei Klassen:\n\nLexikalische Hooks – Welche Substantive, Verben, Adjektive sind durchgängig in Top-Performern? (Konsistenz-Wörter)\nFramework-Dominanz – PAS / Benefit-First / Social Proof / Rational Utility – prozentuale Verteilung pro Asset-Klasse\nZahlen und Konkretisierungen – verifiziert gegen Landingpage. Nicht-LP-gedeckte Zahlen → Sperrliste\nNegativmuster aus LOW-Assets – explizite Negativliste\n\nAufgabe 4: Kontextuelle Einbettung – wo soll die neue Asset-Gruppe greifen?\nDie neue PMax Asset-Gruppe wird in derselben Kampagne wie die Bestandsanzeige erstellt. Daher:\n\nHöchste Gewichtung (4x zusätzlich): Assets aus Asset-Gruppen der gleichen Kampagne wie die Ziel-Kampagne\nMittlere Gewichtung (2x zusätzlich): Assets aus Asset-Gruppen mit gleicher Final-URL-Domain\nNiedrige Gewichtung (1x): Account-weite Patterns als Hintergrundsignal\n\nAufgabe 5: Output – PMax Performance Pattern Brief\nÜbergib an Agent 2 in genau diesem Format (reiner Text, kein Markdown):\n=== PMAX PERFORMANCE PATTERN BRIEF ===\nZiel-Kampagne: {CAMPAIGN_NAME} (ID {CAMPAIGN_ID})\nFinal URL der Ziel-Asset-Gruppe: {FINAL_URL}\nAnalysezeitraum: 90 Tage\nAsset-Basis: {Anzahl} BEST + {Anzahl} GOOD über {Anzahl} Asset-Gruppen\nTop-Performing Asset-Gruppen (Quelle der stärksten Signale): \n  - {AG_NAME_1} | {Conversions} Conv. | {Cost/Conv}\n  - {AG_NAME_2} | ...\n\n--- HEADLINES (max. 30 Zeichen) ---\nTop-Strukturen: [z.B. \"Zahl + Nutzen\", \"Imperativ + Objekt\"]\nTop-Wörter (gewichtet): [Liste]\nTop-CTA-Verben: [Liste]\nVerifizierte Zahlen (LP-gedeckt): [Liste]\nWortzahl-Median Top-Performer: {N} Wörter\nFramework-Verteilung: PAS X% | Benefit Y% | Social Proof Z% | Rational W%\n\n--- LONG HEADLINES (max. 90 Zeichen) ---\nTop-Strukturen: [z.B. \"Hauptaussage + Konkretisierung\", \"Frage + Antwort\"]\nTop-Wörter (gewichtet): [Liste]\nThematische Schwerpunkte (vs. Headlines): [z.B. \"stärker Trust/Methodik\"]\nFramework-Verteilung: PAS X% | Benefit Y% | Social Proof Z% | Rational W%\n\n--- DESCRIPTIONS (max. 90 Zeichen) ---\nTop-Strukturen: [z.B. \"Fakt + Fakt + CTA\", \"Erklärung + Konkretisierung\"]\nTop-Wörter (gewichtet): [Liste]\nSekundäre CTA-Verben: [Liste]\nFramework-Verteilung: PAS X% | Benefit Y% | Social Proof Z% | Rational W%\n\n--- KONSISTENZ-WÖRTER (durchgängig in Top-Performern über alle 3 Klassen) ---\n[Top 8 Wörter, die in Headlines + Long Headlines + Descriptions auftauchen]\n\n--- SEMANTISCHE ANDOCKSIGNALE (aus Search Term Insights) ---\nTop-Suchbegriff-Kategorien mit Conversions: [Liste, falls Query C verfügbar]\n→ Diese Themen sollten in den neuen Assets aufgegriffen werden.\n\n--- NEGATIVLISTE (nicht verwenden) ---\nWörter/Phrasen aus LOW-Assets: [Liste]\nNicht-LP-gedeckte Zahlen: [Liste]\nSperrwörter (aus Agent-3-Regelwerk, Vorab-Filter): \"ROI\", \"Sofort\", \"Jetzt\", \"Bewiesen\", \"Boost\"\n\n--- EMPFEHLUNG AN AGENT 2 ---\nDominantes Framework Top-Performer (über alle 3 Klassen): {Framework}\n→ Agent 2 wählt bewusst ein ANDERES Framework für Diversifikation.\n\nPflichtintegration:\n- Mindestens 5 lexikalische Hooks aus Headlines-Top-Wörtern (≥ 3 Headlines)\n- Mindestens 3 Konsistenz-Wörter über alle 3 Klassen verteilt\n- Mindestens 2 CTA-Verben aus der Liste\n- Mindestens 2 semantische Andocksignale (falls Liste vorhanden)\n\nAsset-Klassen-Differenzierung:\n- Headlines: kurze, transaktionale Hooks\n- Long Headlines: erweiterte Aussage mit dominantem Schwerpunkt {Schwerpunkt}\n- Descriptions: argumentative Ergänzung, keine Wiederholung der Headlines\n=== ENDE BRIEF ===\nVerhaltensregeln (verpflichtend)\n\nDatenlage ehrlich kommunizieren. Wenn weniger als 3 Asset-Gruppen mit ≥ 5 Conversions vorliegen, gib aus: DATENLAGE UNZUREICHEND FÜR PMAX-PATTERNS – Agent 2 arbeitet auf Framework-Basis ohne Pattern-Anreicherung. Erfinde keine Patterns.\nPattern braucht Belege. Jede Aussage im Brief muss auf mindestens 2 Assets fußen. Bei nur 1 Beleg → in den Brief mit Hinweis (schwaches Signal, nur 1 Beleg) aufnehmen, aber nicht in die Pflichtintegration.\nDu diktierst keine Texte. Du lieferst Bausteine. Agent 2 schreibt.\nSprachneutralität. Bei mehrsprachigen Accounts trenne nach Sprache. Mische niemals deutsche und englische Patterns.\nPMax-spezifische Vorsicht: Asset-Performance-Labels in PMax sind volatiler als bei RSA, weil Google die Assets dynamisch ausspielt. Bei sehr kleinen Asset-Gruppen (< 20 Assets total) sind die Labels weniger verlässlich. Markiere im Brief: (Label-Konfidenz: niedrig/mittel/hoch).\nKonsistenz-Wörter haben Sonderstatus. Wörter, die in BEST-Headlines UND BEST-Long Headlines UND BEST-Descriptions auftauchen, sind sehr starke Signale. Diese gehen mit Vorrang in die Pflichtintegration.\nZeichenlimits sind Realität, nicht Empfehlung. Wenn ein Top-Wort 18 Zeichen lang ist, weise Agent 2 darauf hin – das bedeutet, dass Headlines mit diesem Wort nur noch 12 Zeichen Spielraum haben.\nDu löscht die Sperrwörter-Regel von Agent 3 nicht. Du übernimmst sie als Vorab-Filter, damit Agent 2 sie gar nicht erst nutzt: „ROI\", „Sofort\", „Jetzt\", „Bewiesen\", „Boost\" sind tabu. Wenn ein historisch erfolgreiches BEST-Asset eines dieser Wörter enthält, dokumentiere das im Brief unter --- ANOMALIEN ---, aber gib das Wort nicht in die Empfehlung.\n\r\nAufgabe 2: Übergabe an Agent 2\r\nÜbergebe pro Anzeige:\r\nHeadlines\r\nDescriptions\r\nFinal URL\r\nCampaign Resource Name\r\n👉 Ziel: Erstellung einer neuen PMax Asset Group in derselben Kampagne\r\n\r\nAgent 2: Creative Copywriter (PMax Assets Generator)\r\nRolle:\r\nStelle aus den in Agent 1 gefunden Assets eine \"Super\" aus den besten Conversion-Werten zum Anzeigenthema zusammen.\n\nDu erhältst zusätzlich zur Bestandsanzeige einen PMax Performance Pattern Brief vom Conversion Retention Agent. Behandle ihn als verbindlichen Input:\n\nIntegriere mindestens 5 lexikalische Hooks aus den Headlines-Top-Wörtern in mindestens 3 der 15 Headlines.\nIntegriere mindestens 3 Konsistenz-Wörter verteilt über Headlines, Long Headlines und Descriptions.\nVerwende mindestens 2 CTA-Verben aus der gelisteten CTA-Liste.\nGreife mindestens 2 semantische Andocksignale auf (falls Liste vorhanden).\nHalte dich strikt an die Negativliste.\nWähle bewusst ein anderes Framework als das dominante Framework der historischen Top-Performer.\nDifferenziere die Asset-Klassen funktional: Headlines = kurze Hooks, Long Headlines = erweiterte Argumentation, Descriptions = argumentative Ergänzung ohne Headline-Wiederholung.\r\nZiel\r\nErstelle eine vollständige Asset-Basis für eine neue PMax Asset-Gruppe.\r\n\r\nInput\r\nBestehende Headlines\r\nBestehende Descriptions\r\nLandingpage URL\r\n\r\nOutput (STRICT)\r\nGeneriere exakt:\r\n15 Headlines (max. 30 Zeichen)\r\n4 Long Headlines (max. 90 Zeichen empfohlen, max. 70 optional wie bei dir)\r\n4 Descriptions (max. 90 Zeichen, hier: 70)\r\n\r\n### Regeln\r\n- Fokus: Transaktionale Ansprachen,Themen, die auf der Landingpage genannt werden\n- Sprache muss dem allgemeinen, menschlichen Sprachgebrauch entsprechen\n- Achte darauf, auf welcher Sprache die Bestandsanzeige verfasst wurde, auf deren Basis du eine Anzeigenalternative bildest. Wenn sie Deutsch ist, dann musst du die Anzeigenalterantive auf Deutsch bilden. Wenn sie Englisch ist, musst du sie auf Englisch bilden. Dasselbe gilt auch für alle anderen Sprachen.\n- Keine erfundenen Aussagen (durchsuche hierfür bitte die Website per Online-Suche)\r\n- Sprache: professionell, neutral, nicht reißerisch\n\r\n👉 Übergabe an Agent 3\r\n\r\nAgent 3: Asset Creation & PMax Builder\r\nRolle:\r\n Du bist der Google Ads API Engineer für Performance Max Asset-Gruppen.\r\n\r\n🔧 SCHRITT 1: Asset Creation (Text Assets)\r\nDu MUSST ALLE Assets in EINEM Request erstellen.\r\n\r\n✅ Korrekte Struktur:\r\n\r\nBasepath:\r\n\r\n/v{{182.data.Text}}/customers/{{119.customer_id}}/googleAds:mutate\r\n\r\nPayload:\r\n{\r\n  \"mutateOperations\": [\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline1>\"\r\n          }\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline2>\"\r\n          }\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline3>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline4>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline5>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline6>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline7>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline8>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline9>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline10>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline11>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline12>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline13>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline14>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<headline15>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n{\r\n  \"mutateOperations\": [\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<long_headline1>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n{\r\n  \"mutateOperations\": [\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<long_headline2>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n{\r\n  \"mutateOperations\": [\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<description1>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n{\r\n  \"mutateOperations\": [\r\n    {\r\n      \"assetOperation\": {\r\n        \"create\": {\r\n          \"textAsset\": {\r\n            \"text\": \"<description2>\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  ]\r\n}\r\n\r\n\r\n⚠️ KRITISCH\r\nNur EIN mutateOperations Block\r\nReihenfolge = Mapping-Grundlage\r\nOutput speichern als:\r\nmutateOperationResponses[].assetResult.resourceName\r\n\r\n🔧 SCHRITT 2: Asset Group erstellen (PMax Alternative).\r\nJetzt erstellst du eine neue Asset Group als Anzeigenalternative.\n\nBitte führe den nachfolgenden API Call mit Google Ads in deinen Tools aus.\n\nExtrem wichtig: Mappe die Asset Resource Names, die du im vorherigen Schritt generiert hast, in die Platzhalter:\n\n<headline1> bis <headline15>\n<long_headline1> bis <long_headline2>\n<description1> bis <description2>\n\r\nLass alle anderen Elemente des nachfolgenden API Calls unverändert!\n\nIn die Platzhalter-Marker müssen die Resource Names der Assets rein, die du zuvor über die Google Ads API in deinen Tools erstellt hast.\n\nVerwende für den Namen der Asset-Gruppe bitte einen Namen im Schema: \"Conversion Retention {{now}}\"\n\r\nBasepath:\r\n\r\n/v{{182.data.Text}}/customers/{{119.customer_id}}/googleAds:mutate\r\n\r\nPayload:\r\n\r\n{\r\n  \"mutateOperations\": [\r\n    {\r\n      \"assetGroupOperation\": {\r\n        \"create\": {\r\n          \"resourceName\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"campaign\": \"{{125.campaign.resourceName}}\",\r\n          \"name\": \"Conversion Retention {{now}}\",\r\n          \"finalUrls\": [\"{{125.assetGroup.finalUrls[]}}\"],\r\n          \"status\": \"PAUSED\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_1_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_2_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_3_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_4_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_5_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_6_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_7_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_8_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_9_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_10_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_11_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_12_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_13_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_14_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<headline_15_resource_name>\",\r\n          \"fieldType\": \"HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<long_headline_1_resource_name>\",\r\n          \"fieldType\": \"LONG_HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<long_headline_2_resource_name>\",\r\n          \"fieldType\": \"LONG_HEADLINE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<description_1_resource_name>\",\r\n          \"fieldType\": \"DESCRIPTION\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"<description_2_resource_name>\",\r\n          \"fieldType\": \"DESCRIPTION\"\r\n        }\r\n      }\r\n    }\r\n  ]\r\n},\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"{{301.image_resource_name_1}}\",\r\n          \"fieldType\": \"MARKETING_IMAGE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"{{291.body[].results[].asset.resourceName}}\",\r\n          \"fieldType\": \"SQUARE_MARKETING_IMAGE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"{{301.image_resource_name_2}}\",\r\n          \"fieldType\": \"MARKETING_IMAGE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"{{301.image_resource_name_3}}\",\r\n          \"fieldType\": \"MARKETING_IMAGE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"{{301.image_resource_name_4}}\",\r\n          \"fieldType\": \"MARKETING_IMAGE\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"assetGroupAssetOperation\": {\r\n        \"create\": {\r\n          \"assetGroup\": \"customers/{{119.customer_id}}/assetGroups/-999\",\r\n          \"asset\": \"{{301.image_resource_name_5}}\",\r\n          \"fieldType\": \"MARKETING_IMAGE\"\r\n        }\r\n      }\r\n    }\r\n  ]\r\n}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1875,
+                    "y": 2022,
+                    "name": "PMax Asset Agent"
+                },
+                "restore": {
+                    "expect": {
+                        "files": {
+                            "mode": "chose"
+                        },
+                        "outputType": {
+                            "label": "Text"
+                        },
+                        "defaultModel": {
+                            "mode": "edit"
+                        }
+                    },
+                    "parameters": {
+                        "makeConnectionId": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "gemini-ai-q9zyjp"
+                            },
+                            "label": "Gemini 2026"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "makeConnectionId",
+                        "type": "account:ai-provider,openai-gpt-3,anthropic-claude,gemini-ai-q9zyjp,ai-agent-foundry-openai,ai-agent-foundry-non-openai,mistral-ai,cohere,groq,ai-agent-xai,amazon-bedrock,ai-agent-openai-compatible",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "defaultModel",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "systemPrompt",
+                        "type": "text",
+                        "label": "Instructions"
+                    },
+                    {
+                        "name": "message",
+                        "type": "text",
+                        "label": "Input",
+                        "required": true
+                    },
+                    {
+                        "name": "files",
+                        "spec": [
+                            {
+                                "name": "fileName",
+                                "type": "filename",
+                                "label": "File name",
+                                "semantic": "file:name"
+                            },
+                            {
+                                "name": "data",
+                                "type": "buffer",
+                                "label": "Data",
+                                "semantic": "file:data"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Input files"
+                    },
+                    {
+                        "name": "threadId",
+                        "type": "text",
+                        "label": "Conversation ID"
+                    },
+                    {
+                        "name": "modelConfig",
+                        "spec": [
+                            {
+                                "name": "tokenLimit",
+                                "type": "hidden",
+                                "label": "Max output tokens"
+                            },
+                            {
+                                "name": "recursionLimit",
+                                "type": "hidden",
+                                "label": "Steps per agent call"
+                            },
+                            {
+                                "name": "iterationsFromHistoryCount",
+                                "type": "number",
+                                "label": "Maximum conversation history"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Model configuration"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "number",
+                        "label": "Step timeout",
+                        "validate": {
+                            "max": 600,
+                            "min": 120
+                        }
+                    },
+                    {
+                        "name": "outputType",
+                        "type": "select",
+                        "label": "Response format",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "make-schema",
+                                "udt-schema"
+                            ]
+                        }
+                    }
+                ],
+                "advanced": true
+            },
+            "tools": [
+                {
+                    "name": "Agent knowledge",
+                    "description": "Search uploaded files using semantic similarity to retrieve relevant facts and context needed to answer the user’s question. Use this tool when the answer depends on information contained in the uploaded documents.",
+                    "flow": [
+                        {
+                            "id": 310,
+                            "module": "knowledge:KnowledgeStandAlone",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "limit": "50",
+                                "query": "{{309.query}}",
+                                "fileIds": [],
+                                "filestorage": [
+                                    "fa640c68-ba18-48c1-ad47-484c2aa01359"
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2176,
+                                    "y": 2493,
+                                    "name": "Knowledge Base"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "query": {
+                                            "extra": {
+                                                "aiHelp": "A concise natural-language description of the information to look for. The query is embedded and matched by semantic similarity (cosine distance), so it should express intent and meaning, not exact phrasing, keywords, or technical instructions."
+                                            }
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "filestorage",
+                                        "type": "filestorage",
+                                        "label": "Knowledge files"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "type": "text",
+                                        "label": "Search query",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "fileIds",
+                                        "type": "hidden",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "type": "number",
+                                        "label": "Limit",
+                                        "required": true,
+                                        "validate": {
+                                            "max": 500,
+                                            "min": 1
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Make an API Call",
+                    "description": "Performs an arbitrary authorized API call.",
+                    "flow": [
+                        {
+                            "id": 311,
+                            "module": "google-ads-campaign-management:makeApiCall",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 7459369
+                            },
+                            "mapper": {
+                                "qs": "{{309.qs}}",
+                                "url": "{{309.url}}",
+                                "body": "{{309.body}}",
+                                "method": "{{309.method}}",
+                                "headers": "{{309.headers}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2169,
+                                    "y": 2268,
+                                    "name": "Google Ads API Calls"
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "qs": {
+                                            "mode": "edit"
+                                        },
+                                        "url": {
+                                            "extra": {
+                                                "aiHelp": "Enter a path relative to `https://googleads.googleapis.com`.\nFor example, `/vX/customers:listAccessibleCustomers`, where `X` is a version number."
+                                            }
+                                        },
+                                        "method": {
+                                            "mode": "edit"
+                                        },
+                                        "headers": {
+                                            "mode": "edit",
+                                            "extra": {
+                                                "aiHelp": "You don't have to add authorization headers; we already did that for you."
+                                            }
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-ads2"
+                                            },
+                                            "label": "Slava Wagner (Slava Wagner Onlinemarketing)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google-ads2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "url",
+                                        "type": "text",
+                                        "label": "URL",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "method",
+                                        "type": "select",
+                                        "label": "Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "GET",
+                                                "POST",
+                                                "PUT",
+                                                "PATCH",
+                                                "DELETE"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Headers"
+                                    },
+                                    {
+                                        "name": "qs",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Query String"
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu2.make.com",
+        "notes": []
+    }
+}

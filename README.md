@@ -111,4 +111,16 @@ The session maintains context and conversation history. Type `exit` to quit.
 
 ---
 
+## 6. Make.com AI Agents Integration (Blueprints)
+
+Zusätzlich zur CLI-Ausführung stehen im Unterordner [`make-blueprints/`](make-blueprints/) zwei fertige Szenarien-Vorlagen zur Verfügung, mit denen du die Conversion Retention komplett über **Make.com mit Gemini AI Agents** bedienen kannst:
+
+*   **`AIP SWA Conversion Retention RSA.blueprint.json`**: Automatisierte Conversion Retention für Responsive Search Ads (RSAs).
+*   **`AIP SWA - Conversion Retention Agent PMax Asset Groups.blueprint.json`**: Automatisierte Conversion Retention für Performance Max (PMax) Asset Groups.
+
+Eine detaillierte Schritt-für-Schritt-Anleitung zum Import und zur Konfiguration findest du im [Make Blueprints Guide](make-blueprints/README.md).
+
+---
+
 *Created via Google Antigravity CLI | 100% Secure & Compliant API Integrations*
+
