@@ -106,14 +106,14 @@ The session maintains context and conversation history. Type `exit` to quit.
 
 Die Bedienung erfolgt interaktiv über das Terminal Dashboard oder direkt per Kommandozeilenbefehl innerhalb der Google Antigravity CLI (`agy`):
 
-| Befehl | Argumente / Flags | Beschreibung |
-| :--- | :--- | :--- |
-| `node bin/index.js` / `dashboard` | Keine | Startet das interaktive Terminal-Dashboard mit Statusübersicht, Agent-Status und Menüführung. |
-| `node bin/index.js run-workflow` | `--sandbox` (`-s`) | Führt die vollständige 4-stufige Conversion Retention Pipeline aus: Datenabfrage (API v24), Sweet-Spot-Scoring, Recombination durch KI-Agenten und Erstellung der SUPER AD Mutates. Mit `--sandbox` wird die Analyse mit realistischen Mock-Daten simuliert. |
-| `node bin/index.js chat` | `[agentName]` | Startet eine interaktive Multi-Turn-Chat-Session. Wird kein Name übergeben, öffnet sich ein Auswahlmenü. Unterstützt: `rsa_analyst`, `rsa_copywriter`, `rsa_review`, `pmax_analyst`, `pmax_copywriter`. |
-| `node bin/index.js agent list` | Keine | Listet alle registrierten AI Agents mit Rolle, Modell und Kurzbeschreibung auf. |
-| `node bin/index.js agent view <name>` | `<name>` | Zeigt das detaillierte Profil, die internen Richtlinien und den System-Prompt des angegebenen Agenten an. |
-| `node bin/index.js setup` | Keine | Interaktiver Einrichtungsassistent für die Google Ads API v24 (Customer ID, OAuth Client ID/Secret, Developer Token, lokaler OAuth-Callback-Server auf Port 8085). |
+| Befehl | Beschreibung |
+| :--- | :--- |
+| `node bin/index.js` / `dashboard` | Startet das interaktive Terminal-Dashboard mit Statusübersicht, Agent-Status und Menüführung. |
+| `node bin/index.js run-workflow` | Führt die vollständige 4-stufige Conversion Retention Pipeline aus: Datenabfrage (API v24), Sweet-Spot-Scoring, Recombination durch KI-Agenten und Erstellung der SUPER AD Mutates. Mit `--sandbox` wird die Analyse mit realistischen Mock-Daten simuliert. |
+| `node bin/index.js chat` | Startet eine interaktive Multi-Turn-Chat-Session. Wird kein Name übergeben, öffnet sich ein Auswahlmenü. Unterstützt: `rsa_analyst`, `rsa_copywriter`, `rsa_review`, `pmax_analyst`, `pmax_copywriter`. |
+| `node bin/index.js agent list` | Listet alle registrierten AI Agents mit Rolle, Modell und Kurzbeschreibung auf. |
+| `node bin/index.js agent view <name>` | Zeigt das detaillierte Profil, die internen Richtlinien und den System-Prompt des angegebenen Agenten an. |
+| `node bin/index.js setup` | Interaktiver Einrichtungsassistent für die Google Ads API v24 (Customer ID, OAuth Client ID/Secret, Developer Token, lokaler OAuth-Callback-Server auf Port 8085). |
 
 ### Verfügbare KI-Agenten & Aufgaben
 
