@@ -1,4 +1,4 @@
-import fs from 'fs';
+﻿import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -60,7 +60,7 @@ Mindestens 3 Konsistenz-Wörter
 Mindestens 2 CTA-Verben aus der Liste
 === ENDE BRIEF ===`,
     skills: ['LLMGenerateSkill'],
-    model: 'gemini-1.5-flash'
+    model: 'antigravity'
   },
   rsa_copywriter: {
     name: 'rsa_copywriter',
@@ -90,7 +90,7 @@ Descriptions:
 3. [Description 3]
 4. [Description 4]`,
     skills: ['LLMGenerateSkill'],
-    model: 'gemini-1.5-flash'
+    model: 'antigravity'
   },
   rsa_review: {
     name: 'rsa_review',
@@ -116,7 +116,7 @@ Descriptions:
 ...
 4. [Description 4]`,
     skills: ['LLMGenerateSkill'],
-    model: 'gemini-1.5-flash'
+    model: 'antigravity'
   },
   pmax_analyst: {
     name: 'pmax_analyst',
@@ -187,7 +187,7 @@ Pflichtintegration:
 - Mindestens 2 CTA-Verben aus der Liste
 === ENDE BRIEF ===`,
     skills: ['LLMGenerateSkill'],
-    model: 'gemini-1.5-flash'
+    model: 'antigravity'
   },
   pmax_copywriter: {
     name: 'pmax_copywriter',
@@ -219,7 +219,7 @@ Descriptions:
 ...
 4. [Description 4]`,
     skills: ['LLMGenerateSkill'],
-    model: 'gemini-1.5-flash'
+    model: 'antigravity'
   }
 };
 
@@ -277,3 +277,4 @@ export function saveRunLog(runLog) {
   fs.writeFileSync(logPath, JSON.stringify(runLog, null, 2), 'utf8');
   return logPath;
 }
+

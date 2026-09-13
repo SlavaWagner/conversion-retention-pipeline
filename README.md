@@ -24,6 +24,14 @@ graph TD
     Agent4 -->|Paused RSA/Asset Group| GoogleAds[Google Ads Account]
 ```
 
+### System Architecture Circuit
+
+<p align="center">
+  <img src="docs/images/system-circuit.svg" alt="Conversion Retention Pipeline Architecture Circuit" width="560">
+</p>
+
+> *(Interactive standalone circuit widget available at [`docs/system-circuit.html`](docs/system-circuit.html))*
+
 ### The 5 Persistent Agents:
 *   **`rsa_analyst` (RSA Conversion Retention Analyst)**: Extracts proven language patterns from historical RSA performance data, maps weights, and compiles the structured `RSA Performance Pattern Brief`.
 *   **`rsa_copywriter` (RSA Creative Copywriter)**: Takes the brief as binding input and generates 15 high-converting headlines and 4 descriptions using a distinct copywriting framework (PAS, Benefit-First, Social Proof, or Rational Utility).
@@ -94,25 +102,26 @@ The session maintains context and conversation history. Type `exit` to quit.
 
 ---
 
-## 5. Command Reference
+## 5. CLI & Agent Command Reference
 
-*   **Interactive Terminal Dashboard**:
-    ```bash
-    node bin/index.js
-    ```
-*   **Run Optimization Workflow**:
-    ```bash
-    node bin/index.js run-workflow
-    ```
-    *Add `--sandbox` to simulate the workflow using realistic campaign mock data.*
-*   **List Stored AI Agents**:
-    ```bash
-    node bin/index.js agent list
-    ```
-*   **Verify Setup & Storage**:
-    ```bash
-    node bin/index.js verify
-    ```
+Die Bedienung erfolgt interaktiv über das Terminal Dashboard oder direkt per Kommandozeilenbefehl innerhalb der Google Antigravity CLI (`agy`):
+
+| Befehl | Argumente / Flags | Beschreibung |
+| :--- | :--- | :--- |
+| `node bin/index.js` / `dashboard` | Keine | Startet das interaktive Terminal-Dashboard mit Statusübersicht, Agent-Status und Menüführung. |
+| `node bin/index.js run-workflow` | `--sandbox` (`-s`) | Führt die vollständige 4-stufige Conversion Retention Pipeline aus: Datenabfrage (API v24), Sweet-Spot-Scoring, Recombination durch KI-Agenten und Erstellung der SUPER AD Mutates. Mit `--sandbox` wird die Analyse mit realistischen Mock-Daten simuliert. |
+| `node bin/index.js chat` | `[agentName]` | Startet eine interaktive Multi-Turn-Chat-Session. Wird kein Name übergeben, öffnet sich ein Auswahlmenü. Unterstützt: `rsa_analyst`, `rsa_copywriter`, `rsa_review`, `pmax_analyst`, `pmax_copywriter`. |
+| `node bin/index.js agent list` | Keine | Listet alle registrierten AI Agents mit Rolle, Modell und Kurzbeschreibung auf. |
+| `node bin/index.js agent view <name>` | `<name>` | Zeigt das detaillierte Profil, die internen Richtlinien und den System-Prompt des angegebenen Agenten an. |
+| `node bin/index.js setup` | Keine | Interaktiver Einrichtungsassistent für die Google Ads API v24 (Customer ID, OAuth Client ID/Secret, Developer Token, lokaler OAuth-Callback-Server auf Port 8085). |
+
+### Verfügbare KI-Agenten & Aufgaben
+
+*   **`rsa_analyst`**: Analysiert Responsive Search Ads Performance-Labels (`BEST`, `GOOD`, `LOW`) und berechnet Gruppen-Gewichtungen.
+*   **`rsa_copywriter`**: Generiert datenbasierte Recombinations-Headlines (max. 30 Zeichen) und Descriptions (max. 90 Zeichen) basierend auf Gewinner-Assets.
+*   **`rsa_review`**: Validiert Zeichenbegrenzungen, Google Ads Richtlinien und verhindert Asset-Kannibalisierung.
+*   **`pmax_analyst`**: Bewertet Performance Max Asset Groups und aggregiert Asset-Performance auf Domain- und Kampagnenebene.
+*   **`pmax_copywriter`**: Erstellt kampagnenübergreifend optimierte Text-Assets für PMax Asset Groups.
 
 ---
 
