@@ -27,7 +27,7 @@ graph TD
 ### System Architecture Circuit
 
 <p align="center">
-  <img src="docs/images/system-circuit.svg" alt="Conversion Retention Pipeline Architecture Circuit" width="100%">
+  <img src="docs/images/system-circuit.png" alt="Conversion Retention Pipeline Architecture Circuit" width="100%">
 </p>
 
 > *(Interactive standalone circuit widget available at [`docs/system-circuit.html`](docs/system-circuit.html))*
