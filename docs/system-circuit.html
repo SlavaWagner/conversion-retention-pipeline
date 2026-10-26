@@ -1,186 +1,177 @@
-<!-- ==============================================================
-     SWA DISTINCT SYSTEM SCHALTPLAN — Conversion Pipeline (SQUARE 1:1 CIRCUIT, NO LOGO)
-     ============================================================== -->
-<style>
-  .swa-conversion-retention-square-circuit {
-    --bg: #050505;
-    --border: #14161c;
-    --ink: #ffffff;
-    --ink-dim: #7f8694;
-    
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 560px; /* Quadratische Kartengeometrie */
-    margin: 0 auto;
-    box-sizing: border-box;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
-    font-family: inherit !important;
-  }
-  
-  .swa-conversion-retention-square-circuit::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-    background-size: 24px 24px;
-    pointer-events: none;
-  }
-
-  .swa-circuit-wrapper {
-    width: 100%;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .swa-circuit-svg {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .dbt-node {
-    stroke: var(--border);
-    stroke-width: 1.2;
-    fill: #08090d;
-    rx: 0;
-    ry: 0;
-    transition: stroke 0.3s, fill 0.3s;
-  }
-
-  .node-group:hover .dbt-node {
-    stroke: #60a5fa;
-    fill: #0d0f14;
-  }
-
-  .dbt-node-icon {
-    fill: #11131a;
-    rx: 0;
-    ry: 0;
-  }
-</style>
-
-<div class="swa-conversion-retention-square-circuit">
-  <div class="swa-circuit-wrapper">
-    
-    <!-- Symmetrisches quadratisches 1:1 Canvas (500x500) -->
-    <svg class="swa-circuit-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      
-      <defs>
-        <marker id="arrow-marker" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#3cea27" />
-        </marker>
-        <marker id="arrow-marker-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#60a5fa" />
-        </marker>
-        <marker id="arrow-marker-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#7c62ff" />
-        </marker>
-      </defs>
-
-      <!-- ==================== SIGNAL LEITUNGEN (VERBINDUNGEN) ==================== -->
-      
-      <!-- 1. Quellen nach unten in den Asset Recombiner Core (Grün #3cea27) -->
-      <path d="M 135 93 C 135 125, 195 125, 195 155" stroke="#3cea27" stroke-width="2" fill="none" marker-end="url(#arrow-marker)" />
-      <path d="M 365 93 C 365 125, 305 125, 305 155" stroke="#3cea27" stroke-width="2" fill="none" marker-end="url(#arrow-marker)" />
-      
-      <!-- 2. Recombiner Core senkrecht nach unten in den Super Ads Mutator (Blau #60a5fa) -->
-      <path d="M 250 210 L 250 270" stroke="#60a5fa" stroke-width="2.5" fill="none" marker-end="url(#arrow-marker-blue)" />
-      
-      <!-- 3. Super Ads Mutator fächert nach unten in die 3 Output Entitäten auf (Violett #7c62ff) -->
-      <path d="M 250 325 C 250 360, 95 355, 95 385" stroke="#7c62ff" stroke-width="2" fill="none" marker-end="url(#arrow-marker-purple)" />
-      <path d="M 250 325 L 250 385" stroke="#7c62ff" stroke-width="2" fill="none" marker-end="url(#arrow-marker-purple)" />
-      <path d="M 250 325 C 250 360, 405 355, 405 385" stroke="#7c62ff" stroke-width="2" fill="none" marker-end="url(#arrow-marker-purple)" />
-
-
-      <!-- ==================== TIER 1: QUELLEN / SOURCES (OBEN) ==================== -->
-      
-      <!-- Top Left Source: Historical Metrics -->
-      <g class="node-group">
-        <rect class="dbt-node" x="35" y="40" width="200" height="53" />
-        <rect class="dbt-node-icon" x="43" y="51" width="30" height="30" />
-        <g transform="translate(53, 66)"><text fill="#8e96a3" font-size="8" font-family="monospace" font-weight="bold" text-anchor="middle" y="3">SRC</text></g>
-        <text x="79" y="62" fill="#ffffff" font-size="8.5" font-family="monospace">Historical Ads Metrics</text>
-        <text x="79" y="76" fill="#8e96a3" font-size="7" font-family="monospace">Pool: &gt;= 1.000 Ads Assets</text>
-      </g>
-      
-      <!-- Top Right Source: Performance Group Factor -->
-      <g class="node-group">
-        <rect class="dbt-node" x="265" y="40" width="200" height="53" />
-        <rect class="dbt-node-icon" x="273" y="51" width="30" height="30" />
-        <g transform="translate(283, 66)"><text fill="#8e96a3" font-size="8" font-family="monospace" font-weight="bold" text-anchor="middle" y="3">SRC</text></g>
-        <text x="309" y="62" fill="#ffffff" font-size="8.5" font-family="monospace">Performance Group</text>
-        <text x="309" y="76" fill="#8e96a3" font-size="7" font-family="monospace">PMax Asset Scoring</text>
-      </g>
-      
-
-      <!-- ==================== TIER 2: ASSET RECOMBINER CORE (MITTE-OBEN) ==================== -->
-      
-      <!-- Middle Row 1: Asset Recombiner Core (No Logo Version) -->
-      <g class="node-group">
-        <rect class="dbt-node" x="145" y="155" width="210" height="55" />
-        <rect class="dbt-node-icon" x="153" y="167" width="30" height="30" />
-        <g transform="translate(163, 182)"><text fill="#8e96a3" font-size="8" font-family="monospace" font-weight="bold" text-anchor="middle" y="3">MDL</text></g>
-        <text x="189" y="177" fill="#ffffff" font-size="8.5" font-family="monospace">Asset Recombiner Core</text>
-        <text x="189" y="191" fill="#8e96a3" font-size="7" font-family="monospace">Processes 1.000+ Assets</text>
-        <rect x="295" y="149" width="50" height="12" rx="0" ry="0" fill="#34d399" />
-        <text x="320" y="157" fill="#ffffff" font-size="6.5" font-family="monospace" font-weight="bold" text-anchor="middle">RECOMBINE</text>
-      </g>
-      
-
-      <!-- ==================== TIER 3: SUPER ADS MUTATOR (MITTE-UNTEN) ==================== -->
-      
-      <!-- Middle Row 2: Super Ads Mutator -->
-      <g class="node-group">
-        <rect class="dbt-node" x="145" y="270" width="210" height="55" />
-        <rect class="dbt-node-icon" x="153" y="282" width="30" height="30" />
-        <g transform="translate(163, 297)"><text fill="#8e96a3" font-size="8" font-family="monospace" font-weight="bold" text-anchor="middle" y="3">TBL</text></g>
-        <text x="189" y="292" fill="#ffffff" font-size="8.5" font-family="monospace">Super Ads Mutator</text>
-        <text x="189" y="306" fill="#34d399" font-size="7" font-family="monospace">Pulls best RSA assets</text>
-        <rect x="295" y="264" width="50" height="12" rx="0" ry="0" fill="#34d399" />
-        <text x="320" y="272" fill="#ffffff" font-size="6.5" font-family="monospace" font-weight="bold" text-anchor="middle">ENABLED</text>
-      </g>
-
-
-      <!-- ==================== TIER 4: OUTPUT ENTITÄTEN (UNTEN) ==================== -->
-      
-      <!-- Box 1: 15 Headlines -->
-      <g class="node-group">
-        <rect class="dbt-node" x="25" y="385" width="140" height="55" />
-        <rect class="dbt-node-icon" x="31" y="396" width="24" height="24" />
-        <g transform="translate(43, 408)"><text fill="#7c62ff" font-size="7" font-family="monospace" font-weight="bold" text-anchor="middle" y="2">OUT</text></g>
-        <text x="59" y="407" fill="#ffffff" font-size="8" font-family="monospace">15 Headlines</text>
-        <text x="59" y="419" fill="#8e96a3" font-size="6.5" font-family="monospace">Selected Best</text>
-        <rect x="133" y="379" width="26" height="12" rx="0" ry="0" fill="#7c62ff" />
-        <text x="146" y="387" fill="#ffffff" font-size="6" font-family="monospace" font-weight="bold" text-anchor="middle">HL</text>
-      </g>
-
-      <!-- Box 2: 4 Long Headlines -->
-      <g class="node-group">
-        <rect class="dbt-node" x="180" y="385" width="140" height="55" />
-        <rect class="dbt-node-icon" x="186" y="396" width="24" height="24" />
-        <g transform="translate(198, 408)"><text fill="#7c62ff" font-size="7" font-family="monospace" font-weight="bold" text-anchor="middle" y="2">OUT</text></g>
-        <text x="214" y="407" fill="#ffffff" font-size="8" font-family="monospace">4 Long Headlines</text>
-        <text x="214" y="419" fill="#8e96a3" font-size="6.5" font-family="monospace">Selected Best</text>
-        <rect x="288" y="379" width="26" height="12" rx="0" ry="0" fill="#7c62ff" />
-        <text x="301" y="387" fill="#ffffff" font-size="6" font-family="monospace" font-weight="bold" text-anchor="middle">LHL</text>
-      </g>
-
-      <!-- Box 3: 4 Descriptions -->
-      <g class="node-group">
-        <rect class="dbt-node" x="335" y="385" width="140" height="55" />
-        <rect class="dbt-node-icon" x="341" y="396" width="24" height="24" />
-        <g transform="translate(353, 408)"><text fill="#7c62ff" font-size="7" font-family="monospace" font-weight="bold" text-anchor="middle" y="2">OUT</text></g>
-        <text x="369" y="407" fill="#ffffff" font-size="8" font-family="monospace">4 Descriptions</text>
-        <text x="369" y="419" fill="#8e96a3" font-size="6.5" font-family="monospace">Selected Best</text>
-        <rect x="443" y="379" width="26" height="12" rx="0" ry="0" fill="#7c62ff" />
-        <text x="456" y="387" fill="#ffffff" font-size="6" font-family="monospace" font-weight="bold" text-anchor="middle">DESC</text>
-      </g>
-      
-    </svg>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversion Retention Pipeline - System Circuit - System Architecture Circuit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0C10;
+      --card-bg: #FFFFFF;
+      --border: #E5E7EB;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+      max-width: 860px;
+      width: 100%;
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .header p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .circuit-wrapper {
+      width: 100%;
+      max-width: 860px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      overflow-x: auto;
+    }
+    .circuit-wrapper svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Conversion Retention Pipeline - System Circuit</h1>
+    <p>2D Architecture Circuit: Data-Driven Performance Feedback & Recombination Engine</p>
   </div>
-</div>
+  <div class="circuit-wrapper">
+    <svg class="swa-circuit-svg" viewBox="0 0 740 290" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+    <style>
+      .dbt-node { fill: #FFFFFF; stroke: #E5E7EB; stroke-width: 1.2; transition: all 0.2s ease; }
+      .node-group:hover .dbt-node { stroke: #2563EB; fill: #F9FAFB; }
+      .dbt-node-icon { fill: #F3F4F6; }
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Roboto Condensed", sans-serif; }
+    </style>
+      <marker id="c3-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#159A35" />
+      </marker>
+      <marker id="c3-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#2563EB" />
+      </marker>
+      <marker id="c3-arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#7C3AED" />
+      </marker>
+    </defs>
+  <!-- Card Background -->
+  <rect width="740" height="290" rx="10" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.2" />
+
+    <!-- Signal paths -->
+    <path d="M 210 75 C 250 75, 240 135, 280 135" stroke="#159A35" stroke-width="1.8" fill="none" marker-end="url(#c3-arrow-green)" />
+    <path d="M 210 195 C 250 195, 240 135, 280 135" stroke="#159A35" stroke-width="1.8" fill="none" marker-end="url(#c3-arrow-green)" />
+    <path d="M 460 135 L 530 135" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#c3-arrow-blue)" />
+
+    <!-- Branching to output entities -->
+    <path d="M 620 160 C 620 185, 350 185, 350 210" stroke="#7C3AED" stroke-width="1.6" fill="none" marker-end="url(#c3-arrow-purple)" />
+    <path d="M 620 160 C 620 185, 500 185, 500 210" stroke="#7C3AED" stroke-width="1.6" fill="none" marker-end="url(#c3-arrow-purple)" />
+    <path d="M 620 160 C 620 185, 650 185, 650 210" stroke="#7C3AED" stroke-width="1.6" fill="none" marker-end="url(#c3-arrow-purple)" />
+
+    <!-- Node 1: Historical Ads Metrics -->
+    <g class="node-group">
+      <rect class="dbt-node" x="30" y="50" width="180" height="50" rx="6" />
+      <rect class="dbt-node-icon" x="38" y="58" width="34" height="34" rx="4" />
+      <image href="data:image/png;base64,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" xlink:href="data:image/png;base64,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" x="43" y="53" width="24" height="24" preserveAspectRatio="xMidYMid meet" />
+      <text x="80" y="70" fill="#0F1115" font-size="8.5" font-family="'Roboto Condensed', sans-serif" font-weight="700">Bestandsanzeigen</text>
+      <text x="80" y="84" fill="#6B7280" font-size="7" font-family="'Roboto Condensed', sans-serif">Google Ads Daten-Import</text>
+      <rect x="155" y="44" width="45" height="12" rx="3" fill="#159A35" />
+      <text x="177" y="52.5" fill="#FFFFFF" font-size="6.5" font-family="'Roboto Condensed', sans-serif" font-weight="700" text-anchor="middle">METRICS</text>
+    </g>
+
+    <!-- Node 2: Performance Group Factor -->
+    <g class="node-group">
+      <rect class="dbt-node" x="30" y="170" width="180" height="50" rx="6" />
+      <rect class="dbt-node-icon" x="38" y="178" width="34" height="34" rx="4" />
+      <image href="data:image/png;base64,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" xlink:href="data:image/png;base64,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" x="43" y="173" width="24" height="24" preserveAspectRatio="xMidYMid meet" />
+      <text x="80" y="190" fill="#0F1115" font-size="8.5" font-family="'Roboto Condensed', sans-serif" font-weight="700">Performance Scoring</text>
+      <text x="80" y="204" fill="#6B7280" font-size="7" font-family="'Roboto Condensed', sans-serif">Gewichtung nach Lead-Kosten</text>
+      <rect x="155" y="164" width="45" height="12" rx="3" fill="#2563EB" />
+      <text x="177" y="172.5" fill="#FFFFFF" font-size="6.5" font-family="'Roboto Condensed', sans-serif" font-weight="700" text-anchor="middle">SCORING</text>
+    </g>
+
+    <!-- Node 3: Asset Recombiner Core -->
+    <g class="node-group">
+      <rect class="dbt-node" x="280" y="110" width="180" height="50" rx="6" />
+      <rect class="dbt-node-icon" x="288" y="118" width="34" height="34" rx="4" />
+      <g transform="translate(293, 124) scale(0.17)">
+  <rect x="60" y="0" width="10" height="10" fill="#ccce44" /><rect x="70" y="0" width="10" height="10" fill="#f8b839" /><rect x="50" y="10" width="10" height="10" fill="#8ac767" /><rect x="60" y="10" width="10" height="10" fill="#ccce44" /><rect x="70" y="10" width="10" height="10" fill="#f8b839" /><rect x="80" y="10" width="10" height="10" fill="#f18a3a" /><rect x="40" y="20" width="10" height="10" fill="#65ba8b" /><rect x="50" y="20" width="10" height="10" fill="#8ac767" /><rect x="60" y="20" width="10" height="10" fill="#ccce44" /><rect x="70" y="20" width="10" height="10" fill="#f8b839" /><rect x="80" y="20" width="10" height="10" fill="#f18a3a" /><rect x="90" y="20" width="10" height="10" fill="#e55255" /><rect x="40" y="30" width="10" height="10" fill="#65ba8b" /><rect x="50" y="30" width="10" height="10" fill="#8ac767" /><rect x="80" y="30" width="10" height="10" fill="#f18a3a" /><rect x="90" y="30" width="10" height="10" fill="#e55255" /><rect x="30" y="40" width="10" height="10" fill="#5097cf" /><rect x="40" y="40" width="10" height="10" fill="#65ba8b" /><rect x="90" y="40" width="10" height="10" fill="#e55255" /><rect x="100" y="40" width="10" height="10" fill="#b554b5" /><rect x="30" y="50" width="10" height="10" fill="#5097cf" /><rect x="40" y="50" width="10" height="10" fill="#65ba8b" /><rect x="90" y="50" width="10" height="10" fill="#e55255" /><rect x="100" y="50" width="10" height="10" fill="#b554b5" /><rect x="30" y="60" width="10" height="10" fill="#5097cf" /><rect x="40" y="60" width="10" height="10" fill="#65ba8b" /><rect x="90" y="60" width="10" height="10" fill="#e55255" /><rect x="100" y="60" width="10" height="10" fill="#b554b5" /><rect x="20" y="70" width="10" height="10" fill="#4ca5df" /><rect x="30" y="70" width="10" height="10" fill="#5097cf" /><rect x="100" y="70" width="10" height="10" fill="#b554b5" /><rect x="110" y="70" width="10" height="10" fill="#726de9" /><rect x="20" y="80" width="10" height="10" fill="#4ca5df" /><rect x="30" y="80" width="10" height="10" fill="#5097cf" /><rect x="100" y="80" width="10" height="10" fill="#b554b5" /><rect x="110" y="80" width="10" height="10" fill="#726de9" /><rect x="20" y="90" width="10" height="10" fill="#4ca5df" /><rect x="30" y="90" width="10" height="10" fill="#5097cf" /><rect x="100" y="90" width="10" height="10" fill="#b554b5" /><rect x="110" y="90" width="10" height="10" fill="#726de9" /><rect x="10" y="100" width="10" height="10" fill="#48ade8" /><rect x="20" y="100" width="10" height="10" fill="#4ca5df" /><rect x="110" y="100" width="10" height="10" fill="#726de9" /><rect x="120" y="100" width="10" height="10" fill="#4c86f7" /><rect x="0" y="110" width="10" height="10" fill="#5bbdf7" /><rect x="10" y="110" width="10" height="10" fill="#48ade8" /><rect x="120" y="110" width="10" height="10" fill="#4c86f7" /><rect x="130" y="110" width="10" height="10" fill="#3d97ff" />
+</g>
+      <text x="330" y="130" fill="#0F1115" font-size="8.5" font-family="'Roboto Condensed', sans-serif" font-weight="700">Composer Recombiner</text>
+      <text x="330" y="144" fill="#6B7280" font-size="7" font-family="'Roboto Condensed', sans-serif">Erstellung der AI-Anzeige</text>
+      <rect x="396" y="104" width="56" height="12" rx="3" fill="#159A35" />
+      <text x="424" y="112.5" fill="#FFFFFF" font-size="6.5" font-family="'Roboto Condensed', sans-serif" font-weight="700" text-anchor="middle">RECOMBINE</text>
+    </g>
+
+    <!-- Node 4: Super Ads Mutator -->
+    <g class="node-group">
+      <rect class="dbt-node" x="530" y="110" width="180" height="50" rx="6" />
+      <rect class="dbt-node-icon" x="538" y="118" width="34" height="34" rx="4" />
+      <image href="data:image/png;base64,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" xlink:href="data:image/png;base64,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" x="543" y="113" width="24" height="24" preserveAspectRatio="xMidYMid meet" />
+      <text x="580" y="130" fill="#0F1115" font-size="8.5" font-family="'Roboto Condensed', sans-serif" font-weight="700">Google Ads Upload</text>
+      <text x="580" y="144" fill="#6B7280" font-size="7" font-family="'Roboto Condensed', sans-serif">Upload via Google Ads API</text>
+      <rect x="650" y="104" width="52" height="12" rx="3" fill="#159A35" />
+      <text x="676" y="112.5" fill="#FFFFFF" font-size="6.5" font-family="'Roboto Condensed', sans-serif" font-weight="700" text-anchor="middle">UPLOAD</text>
+    </g>
+
+    <!-- 3 Output Entities -->
+    <g class="node-group">
+      <rect class="dbt-node" x="280" y="210" width="140" height="45" rx="5" />
+      <text x="294" y="228" fill="#0F1115" font-size="8" font-family="'Roboto Condensed', sans-serif" font-weight="700">15 Top-Headlines</text>
+      <text x="294" y="242" fill="#6B7280" font-size="6.5" font-family="'Roboto Condensed', sans-serif">Beste CPL-Performer</text>
+      <rect x="388" y="204" width="26" height="11" rx="2" fill="#7C3AED" />
+      <text x="401" y="212" fill="#FFFFFF" font-size="6" font-family="'Roboto Condensed', sans-serif" font-weight="700" text-anchor="middle">HL</text>
+    </g>
+
+    <g class="node-group">
+      <rect class="dbt-node" x="430" y="210" width="140" height="45" rx="5" />
+      <text x="444" y="228" fill="#0F1115" font-size="8" font-family="'Roboto Condensed', sans-serif" font-weight="700">4 Long Headlines</text>
+      <text x="444" y="242" fill="#6B7280" font-size="6.5" font-family="'Roboto Condensed', sans-serif">Höchste Conversion-Rate</text>
+      <rect x="538" y="204" width="26" height="11" rx="2" fill="#7C3AED" />
+      <text x="551" y="212" fill="#FFFFFF" font-size="6" font-family="'Roboto Condensed', sans-serif" font-weight="700" text-anchor="middle">LHL</text>
+    </g>
+
+    <g class="node-group">
+      <rect class="dbt-node" x="580" y="210" width="140" height="45" rx="5" />
+      <text x="594" y="228" fill="#0F1115" font-size="8" font-family="'Roboto Condensed', sans-serif" font-weight="700">4 Beschreibungen</text>
+      <text x="594" y="242" fill="#6B7280" font-size="6.5" font-family="'Roboto Condensed', sans-serif">Stärkste Relevanz-Scores</text>
+      <rect x="688" y="204" width="26" height="11" rx="2" fill="#7C3AED" />
+      <text x="701" y="212" fill="#FFFFFF" font-size="6" font-family="'Roboto Condensed', sans-serif" font-weight="700" text-anchor="middle">DESC</text>
+    </g>
+  </svg>
+  </div>
+</body>
+</html>

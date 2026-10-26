@@ -27,7 +27,7 @@ graph TD
 ### System Architecture Circuit
 
 <p align="center">
-  <img src="docs/images/system-circuit.svg" alt="Conversion Retention Pipeline Architecture Circuit" width="560">
+  <img src="docs/images/system-circuit.svg" alt="Conversion Retention Pipeline Architecture Circuit" width="100%">
 </p>
 
 > *(Interactive standalone circuit widget available at [`docs/system-circuit.html`](docs/system-circuit.html))*
@@ -137,4 +137,5 @@ Eine detaillierte Schritt-für-Schritt-Anleitung zum Import und zur Konfiguratio
 ---
 
 *Created via Google Antigravity CLI | 100% Secure & Compliant API Integrations*
+
 
