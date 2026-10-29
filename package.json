@@ -5,13 +5,14 @@
   "main": "bin/index.js",
   "type": "module",
   "bin": {
+    "conversion-retention": "./bin/index.js",
     "conversion-retention-pipeline": "./bin/index.js"
   },
   "scripts": {
     "start": "node bin/index.js",
-    "setup": "node bin/index.js setup",
     "dashboard": "node bin/index.js dashboard",
     "run-workflow": "node bin/index.js run-workflow",
+    "setup": "node bin/index.js setup",
     "test": "node src/verify.js"
   },
   "dependencies": {

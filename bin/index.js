@@ -66,30 +66,33 @@ function showAgyPrerequisiteWarning(attemptedCmd) {
   
   console.log(getAsciiLogo());
   console.log(yellowBox('================================================================================'));
-  console.log(yellowBox('⚠️   VORBEDINGUNG ERFORDERLICH: GOOGLE ANTIGRAVITY CLI ("agy")'));
+  console.log(yellowBox('⚠️   PREREQUISITE REQUIRED: GOOGLE ANTIGRAVITY CLI ("agy")'));
   console.log(yellowBox('================================================================================'));
   console.log();
-  console.log(whiteBold('  Die Conversion Retention Pipeline funktioniert ausschließlich'));
-  console.log(whiteBold('  INNERHALB der Antigravity CLI!'));
+  console.log(whiteBold('  The Conversion Retention Pipeline works exclusively'));
+  console.log(whiteBold('  INSIDE the Google Antigravity CLI environment!'));
   console.log();
-  console.log(chalk.yellow('  Starte bitte vorher Antigravity mit dem Befehl "agy" und anschließend'));
-  console.log(chalk.yellow('  kannst du mit den Befehlen der conversion-retention-pipeline chatten'));
-  console.log(chalk.yellow('  und die Recombinations- & Retention-Prozesse bedienen.'));
+  console.log(chalk.yellow('  Please start Antigravity first using the command "agy".'));
+  console.log(chalk.yellow('  After launching agy, you can execute conversion-retention commands,'));
+  console.log(chalk.yellow('  interact with persistent AI agents, and run recombination workflows.'));
   console.log();
-  console.log(chalk.gray('  Hinweis: Auf dieser normalen Terminal-Ebene findet keine KI-Verarbeitung statt.'));
-  console.log(chalk.gray('  Die Wiedergabe statischer Outputs wurde übersprungen.'));
+  console.log(chalk.gray('  Note: On standard terminal shells, AI model reasoning is not enabled.'));
+  console.log(chalk.gray('  Static output generation was skipped.'));
   console.log();
-  console.log(cyanText('  👉 SCHRITT 1:'));
-  console.log(whiteBold('     Öffne deine Konsole und starte Antigravity mit folgendem Befehl:'));
+  console.log(cyanText('  👉 STEP 1:'));
+  console.log(whiteBold('     Open your terminal and launch Antigravity with the following command:'));
   console.log();
   console.log('        ' + greenText('agy'));
   console.log();
-  console.log(cyanText('  👉 SCHRITT 2:'));
-  console.log(whiteBold('     In Antigravity kannst du interaktiv mit den Retention-Agenten'));
-  console.log(whiteBold('     chatten und sämtliche Recombinations- und Optimierungs-Workflows steuern.'));
+  console.log(cyanText('  👉 STEP 2:'));
+  console.log(whiteBold('     Inside Antigravity, control all workflows using the clean CLI commands:'));
+  console.log();
+  console.log('        ' + greenText('conversion-retention dashboard'));
+  console.log('        ' + greenText('conversion-retention run-workflow'));
+  console.log('        ' + greenText('conversion-retention chat'));
   console.log();
   console.log(yellowBox('================================================================================'));
-  console.log(chalk.gray('  (Entwickler-Override:   Befehl mit "--force" oder "--inside-agy" ausführen)'));
+  console.log(chalk.gray('  (Developer Override: execute command with "--force" or "--inside-agy")'));
   console.log();
 }
 
@@ -104,7 +107,7 @@ if (!isRunningInsideAntigravity()) {
 const program = new Command();
 
 program
-  .name('conversion-retention-pipeline')
+  .name('conversion-retention')
   .description('Google Ads Conversion Retention & Recombination CLI (requires Antigravity CLI)')
   .version('1.0.0');
 

@@ -60,7 +60,7 @@ The base weight of each asset is determined by Google's relative `performance_la
 *   **BEST**: Base Weight $3\times$
 *   **GOOD**: Base Weight $2\times$
 *   **LOW**: Base Weight $0\times$ (Placed on the Negative List)
-*   **LEARNING/PENDING**: Ignorieren
+*   **LEARNING/PENDING**: Ignored
 
 $$\text{Final Asset Weight} = \text{Base Weight} \times \text{Group Factor}$$
 
@@ -92,11 +92,11 @@ You can start an interactive, multi-turn chat session with any of the persistent
 
 Start a chat session:
 ```bash
-node bin/index.js chat
+conversion-retention chat
 ```
 Or target a specific agent:
 ```bash
-node bin/index.js chat rsa_analyst
+conversion-retention chat rsa_analyst
 ```
 The session maintains context and conversation history. Type `exit` to quit.
 
@@ -104,35 +104,35 @@ The session maintains context and conversation history. Type `exit` to quit.
 
 ## 5. CLI & Agent Command Reference
 
-Die Bedienung erfolgt interaktiv über das Terminal Dashboard oder direkt per Kommandozeilenbefehl innerhalb der Google Antigravity CLI (`agy`):
+Operate interactively via the terminal dashboard or execute standalone CLI commands inside the Google Antigravity CLI (`agy`):
 
-| Befehl | Beschreibung |
+| Command | Description |
 | :--- | :--- |
-| `node bin/index.js` / `dashboard` | Startet das interaktive Terminal-Dashboard mit Statusübersicht, Agent-Status und Menüführung. |
-| `node bin/index.js run-workflow` | Führt die vollständige 4-stufige Conversion Retention Pipeline aus: Datenabfrage (API v24), Sweet-Spot-Scoring, Recombination durch KI-Agenten und Erstellung der SUPER AD Mutates. Mit `--sandbox` wird die Analyse mit realistischen Mock-Daten simuliert. |
-| `node bin/index.js chat` | Startet eine interaktive Multi-Turn-Chat-Session. Wird kein Name übergeben, öffnet sich ein Auswahlmenü. Unterstützt: `rsa_analyst`, `rsa_copywriter`, `rsa_review`, `pmax_analyst`, `pmax_copywriter`. |
-| `node bin/index.js agent list` | Listet alle registrierten AI Agents mit Rolle, Modell und Kurzbeschreibung auf. |
-| `node bin/index.js agent view <name>` | Zeigt das detaillierte Profil, die internen Richtlinien und den System-Prompt des angegebenen Agenten an. |
-| `node bin/index.js setup` | Interaktiver Einrichtungsassistent für die Google Ads API v24 (Customer ID, OAuth Client ID/Secret, Developer Token, lokaler OAuth-Callback-Server auf Port 8085). |
+| `conversion-retention` / `dashboard` | Launches the interactive terminal dashboard with status overview, agent monitoring, and menu navigation. |
+| `conversion-retention run-workflow` | Executes the complete 4-stage Conversion Retention Pipeline: API queries (v24), Sweet-Spot scoring, recombination by AI agents, and staged SUPER AD generation. Use `--sandbox` to simulate analysis with realistic mock campaign data. |
+| `conversion-retention chat` | Starts an interactive multi-turn chat session. If no agent name is passed, an interactive selection menu opens. Supported: `rsa_analyst`, `rsa_copywriter`, `rsa_review`, `pmax_analyst`, `pmax_copywriter`. |
+| `conversion-retention agent list` | Lists all registered AI agents with their role, underlying model, and summary description. |
+| `conversion-retention agent view <name>` | Displays the detailed system prompt, operational guidelines, and profile of the specified agent. |
+| `conversion-retention setup` | Interactive configuration wizard for Google Ads API v24 (Customer ID, OAuth Client ID/Secret, Developer Token, local OAuth callback server on port 8085). |
 
-### Verfügbare KI-Agenten & Aufgaben
+### Available AI Agents & Responsibilities
 
-*   **`rsa_analyst`**: Analysiert Responsive Search Ads Performance-Labels (`BEST`, `GOOD`, `LOW`) und berechnet Gruppen-Gewichtungen.
-*   **`rsa_copywriter`**: Generiert datenbasierte Recombinations-Headlines (max. 30 Zeichen) und Descriptions (max. 90 Zeichen) basierend auf Gewinner-Assets.
-*   **`rsa_review`**: Validiert Zeichenbegrenzungen, Google Ads Richtlinien und verhindert Asset-Kannibalisierung.
-*   **`pmax_analyst`**: Bewertet Performance Max Asset Groups und aggregiert Asset-Performance auf Domain- und Kampagnenebene.
-*   **`pmax_copywriter`**: Erstellt kampagnenübergreifend optimierte Text-Assets für PMax Asset Groups.
+*   **`rsa_analyst`**: Analyzes Responsive Search Ads performance labels (`BEST`, `GOOD`, `LOW`) and calculates performance-weighted group multipliers.
+*   **`rsa_copywriter`**: Generates data-driven recombination headlines (max. 30 chars) and descriptions (max. 90 chars) strictly anchored in historical winning assets.
+*   **`rsa_review`**: Validates character boundaries, compliance with Google Ads editorial guidelines, and eliminates asset cannibalization.
+*   **`pmax_analyst`**: Evaluates complex Performance Max asset groups, aggregating multi-asset performance across domain and campaign levels.
+*   **`pmax_copywriter`**: Composes cross-campaign optimized text assets tailored specifically for PMax asset groups.
 
 ---
 
 ## 6. Make.com AI Agents Integration (Blueprints)
 
-Zusätzlich zur CLI-Ausführung stehen im Unterordner [`make-blueprints/`](make-blueprints/) zwei fertige Szenarien-Vorlagen zur Verfügung, mit denen du die Conversion Retention komplett über **Make.com mit Gemini AI Agents** bedienen kannst:
+In addition to the CLI execution, two ready-to-import scenario templates are available in the [`make-blueprints/`](make-blueprints/) directory, allowing you to run Conversion Retention autonomously via **Make.com with Gemini AI Agents**:
 
-*   **`AIP SWA Conversion Retention RSA.blueprint.json`**: Automatisierte Conversion Retention für Responsive Search Ads (RSAs).
-*   **`AIP SWA - Conversion Retention Agent PMax Asset Groups.blueprint.json`**: Automatisierte Conversion Retention für Performance Max (PMax) Asset Groups.
+*   **`AIP SWA Conversion Retention RSA.blueprint.json`**: Automated conversion retention and recombination for Responsive Search Ads (RSAs).
+*   **`AIP SWA - Conversion Retention Agent PMax Asset Groups.blueprint.json`**: Automated conversion retention for Performance Max (PMax) Asset Groups.
 
-Eine detaillierte Schritt-für-Schritt-Anleitung zum Import und zur Konfiguration findest du im [Make Blueprints Guide](make-blueprints/README.md).
+For detailed step-by-step instructions on importing and configuring these scenarios, see the [Make Blueprints Guide](make-blueprints/README.md).
 
 ---
 
